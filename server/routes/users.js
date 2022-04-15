@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const router = require('express').Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+module.exports = (db) => {
+  // all routes will go here 
+  router.get('/', (req, res) => {
+    const command = "SELECT * FROM users";
+    db.query(command).then(data => {
+      res.json(data.rows);
+    })
+  });
 
-module.exports = router;
+  return router;
+}
+
