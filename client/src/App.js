@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import SideBarList from './components/SideBar/SideBarList';
 import WatchList from './components/WatchList';
-import SingleCrypto from './components/Dashboard/SingleCrypto';
+import SingleCrypto from './components/Dashboard/SingleCrypto/SingleCrypto';
 
 function App() {
   return (
