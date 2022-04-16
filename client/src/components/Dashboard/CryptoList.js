@@ -1,16 +1,9 @@
-import {React,useState,useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 
 import Crypto from './Crypto';
 
-const CryptoList = () => {
-  const [state, setState] = useState([{}]);
-  useEffect(()=>{
-    axios.get('/trending')
-      .then((res)=> setState(res.data))
-      .catch((err)=>console.log(err));
-  },[]);
-  const CryptoList = state.map((crypto)=>{
+const CryptoList = (props) => {
+  const CoinsList = props.data.map((crypto)=>{
     return (
       <Crypto
       key = {crypto.id}
@@ -24,7 +17,7 @@ const CryptoList = () => {
   });
   return (
     <div>
-      {CryptoList}
+      {CoinsList}
     </div>
   )
 }
