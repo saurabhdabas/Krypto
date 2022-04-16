@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import url from '../../helpers/urlDecoder';
 const Crypto = (props) => {
-  const decodedURL = url(props.name);
+
+  const decodedURL = url(props.id);
   return (
       <li>
         <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
