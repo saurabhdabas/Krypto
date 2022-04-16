@@ -6,7 +6,7 @@ const CryptoList = (props) => {
   const CoinsList = props.data.map((crypto)=>{
     return (
       <Crypto
-      key = {crypto.id}
+      key = {crypto.name}
       image={crypto.image}
       name={crypto.name}
       price_change_percentage_24h={crypto.price_change_percentage_24h}
