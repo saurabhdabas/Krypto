@@ -9,7 +9,7 @@ const db = require('./configs/db.config');
 const indexRouter = require('./routes/index');
 const marketRouter = require('./routes/market');
 const cryptoRouter = require('./routes/singleCrypto');
-
+const chartRouter = require('./routes/chart');
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/market', marketRouter(db));
 app.use('/crypto', cryptoRouter(db));
+app.use('/chart', chartRouter(db));
 
 
 module.exports = app;
