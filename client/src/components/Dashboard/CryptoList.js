@@ -8,6 +8,7 @@ const CryptoList = (props) => {
       <Crypto
       key = {crypto.name}
       image={crypto.image}
+      id={crypto.id}
       name={crypto.name}
       price_change_percentage_24h={crypto.price_change_percentage_24h}
       current_price={crypto.current_price}
