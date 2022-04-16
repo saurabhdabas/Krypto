@@ -15,7 +15,7 @@ const Dashboard = () => {
   useEffect(() => {
     axios.get('/market') 
       .then((res) => {
-        setState([{
+        setState((prev)=>[{ ...prev,
           trending:topFourTrending(res.data),
           market:res.data}])
         }
