@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import TrendingCryptoList from './components/Dashboard/TrendingCryptoList';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/dashboard/" element={<TrendingCryptoList/>}/>  
+        <Route path="/dashboard/" element={<Dashboard/>}/>  
       </Routes>
     </>
 
