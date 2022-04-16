@@ -1,9 +1,11 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 const TrendingCrypto = (props) => {
   return (
     <li>
-      <img src={props.image} alt={props.name}></img>
+      <Link to={`/crypto/${props.name.toLowerCase()}`}>
+        <img src={props.image} alt={props.name}></img>
+      </Link>
       <div>
         <span>{props.name}</span>
         <span>{props.price_change_percentage_24h}</span>
