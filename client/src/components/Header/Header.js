@@ -170,7 +170,7 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon /> */}
+
           </IconButton>
           
           <Typography
@@ -179,24 +179,16 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            Hello
+            Hello Username
           </Typography>
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
+
           <Box sx={{ flexGrow: 1 }} />
 
 
           <FormGroup>
             <FormControlLabel
               control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-              label="Dark Mode"
+              
             />
           </FormGroup>          
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
