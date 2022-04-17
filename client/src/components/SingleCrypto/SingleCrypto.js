@@ -3,23 +3,40 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Chart from './Chart';
+import Description from './Description';
 
-const SingleCrypto = (props) => {
+const SingleCrypto = () => {
   const { id } = useParams();
-  // const [state, setState] = useState("");
+  const [state, setState] = useState([{
+    img: "",
+    data: {},
+    description: "",
+    supply: "",
+    circulating_Supply: "",
+    priceChange: ""
+  }]);
   useEffect(() => {
     axios.get(`/crypto/${id}`) 
       .then((res) => {
-        console.log(res);
+        console.log("res:",res.data);
+        setState((prev)=>[{ ...prev,
+          img:res.data.image.large,
+          data: res.data,
+          description: res.data.description.en,
+          price: res.data.market_data.current_price.cad,
+          circulatingSupply: res.data.market_data.circulating_supply,
+          priceChange: res.data.market_data.price_change_24h
+        }])
         }
       )
       .catch((err)=>console.log(err));
   },[id]);
-  // console.log(state)
+  console.log("state:",state[0]);
   return (
     <div>
-      hi
+      
       <Chart/>
+      <Description description = {state[0]}/>
     </div>
   )
 }
