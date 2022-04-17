@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import url from '../../helpers/urlDecoder';
 const TrendingCrypto = (props) => {
+  const decodedURL = url(props.name);
   return (
     <li>
-      <Link to={`/crypto/${props.name.toLowerCase()}`}>
+      <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
         <img src={props.image} alt={props.name}></img>
       </Link>
       <div>
