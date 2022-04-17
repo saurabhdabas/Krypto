@@ -8,6 +8,7 @@ const TrendingCryptoList = (props) => {
     return (
       <TrendingCrypto
       key = {crypto.id}
+      id= {crypto.id}
       image={crypto.image}
       name={crypto.name}
       price_change_percentage_24h={crypto.price_change_percentage_24h}
