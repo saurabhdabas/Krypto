@@ -56,16 +56,29 @@ const Charts = () => {
         data: chartData.map((crypto) => crypto[1]),
         label: `${id.toUpperCase()} ( Past ${day} Days ) in CAD`,
         borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ]
   }
+  let delayed;
   const options={
     elements: {
       point: {
         radius: 2
+      }
+    },
+    responsive:true,
+    animation: {
+      onComplete: () => {
+        delayed = true;
       },
-      responsive:true
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 5 + context.datasetIndex * 10;
+        }
+        return delay;
+      }
     }
   }
   return (
