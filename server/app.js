@@ -1,4 +1,6 @@
 const express = require('express');
+const app = express();
+const http = require('http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -6,12 +8,13 @@ const logger = require('morgan');
 // db connection
 const db = require('./configs/db.config');
 
+// Route Handling
 const indexRouter = require('./routes/index');
 const marketRouter = require('./routes/market');
 const cryptoRouter = require('./routes/singleCrypto');
 const chartRouter = require('./routes/chart');
 
-const app = express();
+// Middlewares
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -25,4 +28,4 @@ app.use('/crypto', cryptoRouter(db));
 app.use('/chart', chartRouter(db));
 
 
-module.exports = app;
+module.exports = {app, server};
