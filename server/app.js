@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 // Handling User Authentication
-const passportSetup = require("./passport");
+
 const passport = require("passport");
 const authRoute = require("./routes/auth");
 const cookieSession = require('cookie-session');
