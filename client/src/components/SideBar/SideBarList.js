@@ -1,6 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 const sideBarList = () => {
+
+  const logout = () => {
+    window.open("http://localhost:3002/logout", "_self");
+
+  };
   return (
     <div>
       <div> 
@@ -24,7 +29,7 @@ const sideBarList = () => {
         <Link to="/cryptotools">Tools</Link>
         </li>
         <li>
-        <Link to="/logout">Logout</Link>
+        <Link to="/logout" onClick={logout}>Logout</Link>
         </li>
       </ul>
     </div>
