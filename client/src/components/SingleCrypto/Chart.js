@@ -25,8 +25,8 @@ ChartJS.register(
 );
 
 const Charts = () => {
-  const { id, day_id } = useParams();
-  console.log("day_id:",day_id);
+  const { id } = useParams();
+
   const [chartData, setChartData] = useState([]);
 
   const [day, setDay] = useState(1);
@@ -46,7 +46,7 @@ const Charts = () => {
 
   const data = {
     labels: chartData.map((crypto) => {
-          console.log("crypto:",chartData)
+
           let date = new Date(crypto[0]);
           let time = date.toLocaleDateString();
           return day === 1 ? time : date.toLocaleDateString()
