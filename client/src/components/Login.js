@@ -11,6 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 
 const Login = () => {
 
@@ -86,6 +87,11 @@ const Login = () => {
         noValidate
         autoComplete="off"
       >
+        <Avatar
+        alt="Remy Sharp"
+        src="	https://pickaface.net/gallery/avatar/20160625_050020_889_FAKE.png"
+        sx={{ width: 100, height: 100 }}
+        />
         <div>
           <TextField
             id="outlined-required"
