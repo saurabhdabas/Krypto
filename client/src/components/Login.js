@@ -124,10 +124,14 @@ const Login = () => {
         </div>
         <div>
           <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple>
-            Submit
+            Login
           </BootstrapButton>
         </div>
-
+        <div>
+          <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple>
+            Register
+          </BootstrapButton>
+        </div>
       </Box>
     </Stack>
   );  
