@@ -14,7 +14,7 @@ function App() {
       <SideBarList/>
       <Routes>
         
-        <Route path="/" element={<Login/>}/> 
+        <Route path="/login" element={<Login/>}/> 
         <Route path="/dashboard" element={<Dashboard/>}/> 
         <Route path="/watchlist" element={<WatchList/>}/>
         <Route path="/crypto/:id" element={<SingleCrypto/>}/>
