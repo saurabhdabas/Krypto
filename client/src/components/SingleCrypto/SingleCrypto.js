@@ -18,7 +18,6 @@ const SingleCrypto = () => {
   useEffect(() => {
     axios.get(`/crypto/${id}`) 
       .then((res) => {
-        console.log("res:",res.data);
         setState((prev)=>[{ ...prev,
           img:res.data.image.large,
           data: res.data,
@@ -31,7 +30,7 @@ const SingleCrypto = () => {
       )
       .catch((err)=>console.log(err));
   },[id]);
-  console.log("state:",state[0]);
+  
   return (
     <div>
       
