@@ -5,6 +5,21 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+// Handling User Authentication
+const passportSetup = require("./passport");
+const passport = require("passport");
+const authRoute = require("./routes/auth");
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['crypto'],
+  maxAge: 24 * 60 * 60 * 100
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/auth", authRoute);
+
 // db connection
 const db = require('./configs/db.config');
 
