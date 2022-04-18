@@ -34,6 +34,10 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const github = () => {
+    window.open("http://localhost:3002/dashboard", "_self");
+  };
   // Styling for Submit Button
 
   const BootstrapButton = styled(Button)({
@@ -123,7 +127,7 @@ const Login = () => {
           </FormControl>
         </div>
         <div>
-          <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple>
+          <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple onClick={github}>
             Login
           </BootstrapButton>
         </div>
