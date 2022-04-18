@@ -3,7 +3,7 @@ import {React} from 'react';
 import TrendingCrypto from './TrendingCrypto';
 
 const TrendingCryptoList = (props) => {
-  console.log("props:",props.data);
+
   const TrendingCryptoList = props.data.map((crypto)=>{
     return (
       <TrendingCrypto
