@@ -1,5 +1,7 @@
 import  { React, useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -68,7 +70,9 @@ function Chat({ socket, username, room }) {
             event.key === "Enter" && sendMessage();
           }}
         />
-        <button onClick={sendMessage}>&#9658;</button>
+        <Button onClick={sendMessage} variant="contained" endIcon={<SendIcon />}>
+        Send
+        </Button>
       </div>
     </div>
   );
