@@ -1,5 +1,7 @@
 import {React, useState} from 'react';
 import io from 'socket.io-client';
+import Button from '@mui/material/Button';
+
 
 import Chat from './Chat';
 
@@ -28,8 +30,9 @@ const ChatRoom = (props) => {
             setUsername(event.target.value);
           }}
         />
-      
-        <button onClick={joinRoom}>Join A Room</button>
+        <Button onClick={joinRoom} variant="contained">
+        Join A Room
+        </Button>
       </div>
     ) : (
       <Chat socket={socket} username={username} room={props.roomId} />
