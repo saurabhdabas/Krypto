@@ -4,6 +4,7 @@ import SideBarList from './components/SideBar/SideBarList';
 import WatchList from './components/WatchList';
 import SingleCrypto from './components/SingleCrypto/SingleCrypto';
 import Header from  './components/Header/Header'
+import ChatRooms from './components/Chat/ChatRooms';
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/> 
         <Route path="/watchlist" element={<WatchList/>}/>
         <Route path="/crypto/:id" element={<SingleCrypto/>}/>
+        <Route path="/chatrooms" element={<ChatRooms/>}/>
+
       </Routes>
+      
     </>
 
   );
