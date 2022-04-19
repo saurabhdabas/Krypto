@@ -8,18 +8,18 @@ import Chat from './Chat';
 const socket = io.connect("http://localhost:8081");
 
 const ChatRoom = (props) => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState({});
 
   const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     
-    setUsername(localStorage.getItem('username'));
+    setUser(JSON.parse(localStorage.getItem('username')));
     
-  }, [username]);
-
+  }, []);
+  console.log("user:",user);
   const joinRoom = () => {
-    if (username !== "" && props.roomId !== "") {
+    if (user.name !== "" && props.roomId !== "") {
       socket.emit("join_room", props.roomId);
       setShowChat(true);
     }
@@ -42,7 +42,7 @@ const ChatRoom = (props) => {
         </Button>
       </div>
     ) : (
-      <Chat socket={socket} username={username} room={props.roomId} />
+      <Chat socket={socket} user={user.name} img={user.img} room={props.roomId} />
     )}
   </div>
 );
