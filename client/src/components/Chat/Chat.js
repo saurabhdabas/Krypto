@@ -2,6 +2,7 @@ import  { React, useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import Avatar from '@mui/material/Avatar';
 
 function Chat({ socket, user, room, img }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -48,7 +49,10 @@ function Chat({ socket, user, room, img }) {
               >
                 <div>
                   <div className="message-content">
-                  <img src={messageContent.img} alt = "avatar"/>
+                  <Avatar alt="Remy Sharp"
+                    src={messageContent.img}
+                    sx={{ width: 80, height: 80 }}
+                  />
                   <p id="time">{messageContent.author} sent at: {messageContent.time}</p>
                     <p><strong>{messageContent.message}</strong></p>
                   </div>
