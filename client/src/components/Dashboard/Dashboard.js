@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import Header from '../Header/Header';
-import SideBarList from '../SideBar/SideBarList';
+import Navigation from '../Navigation/Navigation';
 import CryptoList from './CryptoList';
 import TrendingCryptoList from './TrendingCryptoList';
 import SearchForm from './SearchForm';
@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <>
       <Header/>
-      <SideBarList/>
+      <Navigation/>
       <TrendingCryptoList data={state[0].trending}/>
       <SearchForm search={search} onChange={inputHandler}/>
       <CryptoList data={filteredRows}/>
