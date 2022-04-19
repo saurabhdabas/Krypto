@@ -1,6 +1,7 @@
-import {React, useState} from 'react'
+import {React,useState} from 'react';
+import { useNavigate } from 'react-router';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,18 +13,40 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import axios from 'axios';
 
 const Login = () => {
 
   const [values, setValues] = useState({
+    email : '',
     password: '',
     showPassword: false,
   });
+  let navigate = useNavigate();
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log("values:",values);
+    axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
+      if(response.data){
+          navigate('/dashboard');
+      }
+    });
+  }
+  const handleEmail = (event) => {
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
+    setValues({
+      ...values ,
+      email: event.target.value
+    });
   };
+  const handlePassword = (event) => {
 
+    setValues({
+      ...values ,
+      password: event.target.value
+    });
+  };
+  console.log("values:",values);
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -35,9 +58,8 @@ const Login = () => {
     event.preventDefault();
   };
 
-  const github = () => {
-    window.open("http://localhost:3002/dashboard", "_self");
-  };
+
+
   // Styling for Submit Button
 
   const BootstrapButton = styled(Button)({
@@ -96,20 +118,24 @@ const Login = () => {
         src="	https://pickaface.net/gallery/avatar/20160625_050020_889_FAKE.png"
         sx={{ width: 100, height: 100 }}
         />
+
         <div>
-          <TextField
-            id="outlined-required"
-            label="Username"
-          />
-        </div>
-        <div>
+          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-email"
+              value={values.email}
+              onChange={handleEmail}
+              label="Email"
+            />
+          </FormControl>
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
-              onChange={handleChange('password')}
+              onChange={handlePassword}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -127,7 +153,7 @@ const Login = () => {
           </FormControl>
         </div>
         <div>
-          <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple onClick={github}>
+          <BootstrapButton sx={{ m: 1, width: '25ch' }} variant="contained" disableRipple onClick={submitHandler}>
             Login
           </BootstrapButton>
         </div>
