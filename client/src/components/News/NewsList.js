@@ -9,10 +9,11 @@ const NewsList = () => {
     method: 'GET',
     url: 'https://crypto-news14.p.rapidapi.com/news/cointelegraph',
     headers: {
-      'X-RapidAPI-Host': 'crypto-news14.p.rapidapi.com',
-      'X-RapidAPI-Key': 'dcbde3c064msh331872c8b653255p19625bjsn3814756331e3'
+      'X-RapidAPI-Host': process.env.REACT_APP_HOST_KEY,
+      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY,
     }
-  };
+  }
+  console.log("HOST:",process.env.REACT_APP_HOST_KEY,)
   useEffect(()=>{
     axios.request(options).then(function (response) {
       setNews(...news,response.data)
