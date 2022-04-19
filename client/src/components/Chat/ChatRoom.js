@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import io from 'socket.io-client';
 import Button from '@mui/material/Button';
 
@@ -9,7 +9,14 @@ const socket = io.connect("http://localhost:8081");
 
 const ChatRoom = (props) => {
   const [username, setUsername] = useState("");
+
   const [showChat, setShowChat] = useState(false);
+
+  useEffect(() => {
+    
+    setUsername(localStorage.getItem('username'));
+    
+  }, [username]);
 
   const joinRoom = () => {
     if (username !== "" && props.roomId !== "") {
@@ -23,13 +30,13 @@ const ChatRoom = (props) => {
     {!showChat ? (
       <div className="joinChatContainer">
         <h3>Join A Chat</h3>
-        <input
+        {/* <input
           type="text"
           placeholder="John..."
           onChange={(event) => {
             setUsername(event.target.value);
           }}
-        />
+        /> */}
         <Button onClick={joinRoom} variant="contained">
         Join A Room
         </Button>
