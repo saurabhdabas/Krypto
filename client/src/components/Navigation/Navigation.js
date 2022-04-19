@@ -2,18 +2,18 @@ import {React, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 const Navigation = () =>{
 
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState({});
   useEffect(() => {
     
-    setValue(localStorage.getItem('username'));
+    setValue(JSON.parse(localStorage.getItem('username')));
     
-  }, [value]);
+  }, []);
 
   return (
     <div>
       <div> 
-        <img src="https://pickaface.net/gallery/avatar/20160625_050020_889_FAKE.png" alt="avatar"/>
-        <p>{`${value}`}</p>
+        <img src={value.img} alt="avatar"/>
+        <p>{`${value.name}`}</p>
       </div>
       <ul>
         <li>
