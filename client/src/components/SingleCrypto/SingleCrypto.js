@@ -7,6 +7,7 @@ import Description from './Description';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 
+
 const SingleCrypto = () => {
   const { id } = useParams();
   const [state, setState] = useState([{
@@ -43,4 +44,4 @@ const SingleCrypto = () => {
   )
 }
 
-export default SingleCrypto
+export default SingleCrypto;
