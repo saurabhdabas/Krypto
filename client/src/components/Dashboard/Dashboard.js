@@ -1,5 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
+import Header from '../Header/Header';
+import SideBarList from '../SideBar/SideBarList';
 import CryptoList from './CryptoList';
 import TrendingCryptoList from './TrendingCryptoList';
 import SearchForm from './SearchForm';
@@ -28,6 +30,8 @@ const Dashboard = () => {
   const filteredRows = searchFilter(state[0].market, search)
   return (
     <>
+      <Header/>
+      <SideBarList/>
       <TrendingCryptoList data={state[0].trending}/>
       <SearchForm search={search} onChange={inputHandler}/>
       <CryptoList data={filteredRows}/>
