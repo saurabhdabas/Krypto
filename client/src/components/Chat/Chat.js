@@ -3,15 +3,16 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, user, room, img }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
+        img : img,
         room: room,
-        author: username,
+        author: user,
         message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
@@ -31,7 +32,7 @@ function Chat({ socket, username, room }) {
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
-
+  
   return (
     <div className="chat-window">
       <div className="chat-header">
@@ -43,10 +44,11 @@ function Chat({ socket, username, room }) {
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
+                id={user === messageContent.author ? "you" : "other"}
               >
                 <div>
                   <div className="message-content">
+                  <img src={messageContent.img} alt = "avatar"/>
                   <p id="time">{messageContent.author} sent at: {messageContent.time}</p>
                     <p><strong>{messageContent.message}</strong></p>
                   </div>
