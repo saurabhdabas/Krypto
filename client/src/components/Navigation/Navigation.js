@@ -37,7 +37,7 @@ const Navigation = () =>{
         <Link to="/chatrooms">Chat</Link>
         </li>
         <li>
-        <Link to="/cryptotools">Tools</Link>
+        <Link to="/calculators">Calculators</Link>
         </li>
         <li>
         <Link to="/" onClick ={handleClick}>Logout</Link>
