@@ -6,7 +6,7 @@ import SingleCrypto from './components/SingleCrypto/SingleCrypto';
 
 import ChatRooms from './components/Chat/ChatRooms';
 import Login from './components/Login';
-import LoginTest from './components/LoginTest';
+
 
 function App() {
   return (
@@ -14,8 +14,7 @@ function App() {
 
       <Routes>
         
-        <Route path="/" element={<Login/>} /> 
-        <Route path="/login" element={<LoginTest/>}/> 
+        <Route path="/" element={<Login/>}/> 
         <Route path="/dashboard" element={<Dashboard/>}/> 
         <Route path="/watchlist" element={<WatchList/>}/>
         <Route path="/crypto/:id" element={<SingleCrypto/>}/>
