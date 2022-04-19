@@ -7,6 +7,7 @@ import SingleCrypto from './components/SingleCrypto/SingleCrypto';
 
 import ChatRooms from './components/Chat/ChatRooms';
 import Login from './components/Login';
+import NewsList from './components/News/NewsList';
 
 import ProtectedRoutes from './components/Hooks/userAuth';
 
@@ -16,7 +17,7 @@ function App() {
     
 
       <Routes>
-          
+
           <Route path="/" element={<Login/>}/> 
 
           <Route path='/' element={<ProtectedRoutes/>}>
@@ -25,6 +26,7 @@ function App() {
           
             <Route path="/watchlist" element={<WatchList/>}/>
           
+            <Route path="/news" element={<NewsList/>}/>
           
             <Route path="/crypto/:id" element={<SingleCrypto/>}/>
           
