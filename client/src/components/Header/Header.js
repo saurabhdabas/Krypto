@@ -17,12 +17,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch'
 
 export default function PrimarySearchAppBar() {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState({});
   useEffect(() => {
     
-    setValue(localStorage.getItem('username'));
+    setValue(JSON.parse(localStorage.getItem('username')));
     
-  }, [value]);
+  }, []);
 
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -187,7 +187,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            {`Hello ${value}`}
+            {`Hello ${value.name}`}
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
