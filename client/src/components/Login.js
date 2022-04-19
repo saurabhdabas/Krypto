@@ -28,7 +28,8 @@ const Login = () => {
     console.log("values:",values);
     axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
       if(response.data){
-          navigate('/dashboard');
+        localStorage.setItem('username',response.data.name);
+        navigate('/dashboard');
       }
     });
   }
