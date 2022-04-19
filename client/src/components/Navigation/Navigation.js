@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
 const Navigation = () =>{
 
   const [value, setValue] = useState({});
@@ -15,7 +16,11 @@ const Navigation = () =>{
   return (
     <div>
       <div> 
-        <img src={value.img} alt="avatar"/>
+      <Avatar
+        alt="Remy Sharp"
+        src={value.img}
+        sx={{ width: 80, height: 80 }}
+        />
         <p>{`${value.name}`}</p>
       </div>
       <ul>
