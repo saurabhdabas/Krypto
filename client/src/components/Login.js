@@ -28,10 +28,11 @@ const Login = () => {
     event.preventDefault();
     
     axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
-      localStorage.setItem('username',JSON.stringify(response.data));
-
-      navigate('/dashboard');
-      
+      if(response.data){
+        localStorage.setItem('username',JSON.stringify(response.data));
+        
+        navigate('/dashboard');
+      }
     });
   }
   const handleEmail = (event) => {
