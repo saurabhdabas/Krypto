@@ -20,17 +20,18 @@ const Login = () => {
   const [values, setValues] = useState({
     email : '',
     password: '',
+    img:'',
     showPassword: false,
   });
   let navigate = useNavigate();
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("values:",values);
+    
     axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
-      if(response.data){
-        localStorage.setItem('username',response.data.name);
-        navigate('/dashboard');
-      }
+      localStorage.setItem('username',JSON.stringify(response.data));
+
+      navigate('/dashboard');
+      
     });
   }
   const handleEmail = (event) => {
@@ -47,7 +48,7 @@ const Login = () => {
       password: event.target.value
     });
   };
-  console.log("values:",values);
+  // console.log("values:",values);
   const handleClickShowPassword = () => {
     setValues({
       ...values,
