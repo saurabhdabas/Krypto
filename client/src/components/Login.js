@@ -23,18 +23,7 @@ const Login = () => {
     img:'',
     showPassword: false,
   });
-  let navigate = useNavigate();
-  const submitHandler = (event) => {
-    event.preventDefault();
-    
-    axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
-      if(response.data){
-        localStorage.setItem('username',JSON.stringify(response.data));
-        
-        navigate('/dashboard');
-      }
-    });
-  }
+
   const handleEmail = (event) => {
 
     setValues({
@@ -61,6 +50,20 @@ const Login = () => {
     event.preventDefault();
   };
 
+  let navigate = useNavigate();
+  const submitHandler = (event) => {
+    event.preventDefault();
+    
+    axios.put(`http://localhost:8081/user-data`, {data: values}).then((response)=> {
+      console.log("email:",response.data.email);
+      console.log("password:",response.data.password);
+      if(response.data.email && response.data.password){
+        localStorage.setItem('username',JSON.stringify(response.data));
+        
+        navigate('/dashboard');
+      }
+    });
+  }
 
 
   // Styling for Submit Button
