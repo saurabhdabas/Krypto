@@ -1,6 +1,8 @@
 import { React, useState} from 'react';
 import Button from '@mui/material/Button';
 import ChatRoom from './ChatRoom';
+import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 const ChatRooms = () => {
   const [room, setRoom] = useState("");
   const button = () => {
@@ -26,7 +28,8 @@ const ChatRooms = () => {
 
   return (
     <div>
-      
+      <Header/>
+      <Navigation/>
       {button()}
       
     </div>
