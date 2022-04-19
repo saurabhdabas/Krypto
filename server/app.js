@@ -2,25 +2,11 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+
 const logger = require('morgan');
-
-// Handling User Authentication
-
-const passport = require("passport");
-const authRoute = require("./routes/auth");
-const cookieSession = require('cookie-session');
-app.use(cookieSession({
-  name: 'session',
-  keys: ['crypto'],
-  maxAge: 24 * 60 * 60 * 100
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-app.use("/auth", authRoute);
-
+const cors = require('cors');
 // db connection
+
 const db = require('./configs/db.config');
 
 // Route Handling
@@ -30,17 +16,28 @@ const cryptoRouter = require('./routes/singleCrypto');
 const chartRouter = require('./routes/chart');
 
 // Middlewares
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/market', marketRouter(db));
 app.use('/crypto', cryptoRouter(db));
 app.use('/chart', chartRouter(db));
+
+//Add User Authentication
+app.put('/user-data',(req, res) => {
+  let data = {
+    email:req.body.data.email,
+    password:req.body.data.password
+  };
+  db.query(`SELECT * FROM users WHERE email = $1`, [data.email])
+  .then(response => res.send(response.rows[0]))
+  .catch(e => console.error(e.stack))
+});
 
 // Socket Connection 
 const server = http.createServer(app);
