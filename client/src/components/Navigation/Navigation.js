@@ -9,6 +9,9 @@ const Navigation = () =>{
     
   }, []);
 
+  const handleClick = () => {
+    setValue(localStorage.removeItem('username'));
+  }
   return (
     <div>
       <div> 
@@ -32,7 +35,7 @@ const Navigation = () =>{
         <Link to="/cryptotools">Tools</Link>
         </li>
         <li>
-        <Link to="/">Logout</Link>
+        <Link to="/" onClick ={handleClick}>Logout</Link>
         </li>
       </ul>
     </div>
