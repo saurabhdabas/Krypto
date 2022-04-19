@@ -10,6 +10,7 @@ import Login from './components/Login';
 import NewsList from './components/News/NewsList';
 
 import ProtectedRoutes from './components/Hooks/userAuth';
+import CurrencyConverter from './components/CurrencyConverter';
 
 function App() {
 
@@ -27,11 +28,14 @@ function App() {
             <Route path="/watchlist" element={<WatchList/>}/>
           
             <Route path="/news" element={<NewsList/>}/>
+
           
             <Route path="/crypto/:id" element={<SingleCrypto/>}/>
           
           
             <Route path="/chatrooms" element={<ChatRooms/>}/>
+
+            <Route path="/calculators" element={<CurrencyConverter/>}/>
           </Route>
       
       </Routes>
