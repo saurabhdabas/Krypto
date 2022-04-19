@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import Chart from './Chart';
 import Description from './Description';
+import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 
 const SingleCrypto = () => {
   const { id } = useParams();
@@ -33,7 +35,8 @@ const SingleCrypto = () => {
   
   return (
     <div>
-      
+      <Header/>
+      <Navigation/>
       <Chart/>
       <Description description = {state[0]}/>
     </div>
