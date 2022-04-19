@@ -1,11 +1,19 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
-const sideBarList = () =>{
+const Navigation = () =>{
+
+  const [value, setValue] = useState(null);
+  useEffect(() => {
+    
+    setValue(localStorage.getItem('username'));
+    
+  }, [value]);
+
   return (
     <div>
       <div> 
         <img src="https://pickaface.net/gallery/avatar/20160625_050020_889_FAKE.png" alt="avatar"/>
-        <p>Saurabh</p>
+        <p>{`${value}`}</p>
       </div>
       <ul>
         <li>
@@ -31,6 +39,6 @@ const sideBarList = () =>{
   )
 }
 
-export default sideBarList;
+export default Navigation;
 
 
