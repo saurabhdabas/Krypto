@@ -25,7 +25,7 @@ const Login = () => {
   });
 
   const handleEmail = (event) => {
-
+    
     setValues({
       ...values ,
       email: event.target.value
@@ -60,7 +60,7 @@ const Login = () => {
       if(response.data.email && response.data.password){
         localStorage.setItem('username',JSON.stringify(response.data));
         
-        navigate('/dashboard');
+      navigate('/dashboard');
       }
     });
   }
