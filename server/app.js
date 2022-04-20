@@ -39,6 +39,10 @@ app.put('/user-data',(req, res) => {
   .then(response => res.send(response.rows[0]))
   .catch(e => console.error(e.stack))
 });
+// Add Favourites to database
+app.put('/user-fav',(req,res) =>{
+  console.log("req:",req);
+});
 
 // Socket Connection 
 const server = http.createServer(app);
