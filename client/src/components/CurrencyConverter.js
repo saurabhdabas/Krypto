@@ -8,6 +8,7 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import SendIcon from '@mui/icons-material/Send';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import TextField from '@mui/material/TextField';
 
 export default function CurrencyConverter() {
@@ -36,7 +37,7 @@ export default function CurrencyConverter() {
   })
   const handleChange = (event) => {
     if(Math.sign(event.target.value)){
-      console.log(event.target.value)
+
       setNumber(event.target.value)
     }
   }
@@ -48,7 +49,7 @@ export default function CurrencyConverter() {
     console.log("PrimaryValue:",event.target.value);
     setPrimary(event.target.value)
   }
-  
+
   const amount = number * primary;
 
   const handleResult = () => {
@@ -61,6 +62,13 @@ export default function CurrencyConverter() {
     setResult(final);
   }
   console.log(result);
+
+  const handleRefresh = () => {
+    setNumber("");
+    setPrimary("");
+    setSecondary("");
+    setResult("");
+  }
   return (
     
     <Box
@@ -74,6 +82,9 @@ export default function CurrencyConverter() {
         value={number}
         label="Enter Amount to Convert"
         type="number"
+        InputLabelProps={{
+          shrink: true,
+        }}
         onChange={handleChange}
       />
       <FormControl sx={{ m: 1, minWidth: 300 }}>
@@ -111,6 +122,9 @@ export default function CurrencyConverter() {
       <div>
         <Button variant="contained" endIcon={<SendIcon />} onClick={handleResult}>
           Convert
+        </Button>
+        <Button variant="contained" endIcon={<RefreshIcon />} onClick={handleRefresh}>
+          Clear
         </Button>
       </div>
       <div>
