@@ -10,6 +10,7 @@ import Login from './components/Login';
 import NewsList from './components/News/NewsList';
 
 import ProtectedRoutes from './components/Hooks/userAuth';
+
 import CurrencyConverter from './components/CurrencyConverter';
 
 function App() {
