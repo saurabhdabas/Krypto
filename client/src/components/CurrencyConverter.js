@@ -8,15 +8,15 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import SendIcon from '@mui/icons-material/Send';
-import PrimarySearchAppBar from './Header/Header';
-
+import TextField from '@mui/material/TextField';
 
 export default function CurrencyConverter() {
   const [ state, setState] = useState([{data:[]}]);
   const [ primary, setPrimary] = useState(null);
   const [ secondary, setSecondary] = useState(null);
+  const [ number, setNumber] = useState(1);
+  const [ result, setResult] = useState(0);
 
-  
   useEffect(() => {
     axios.get('/market') 
       .then((res) => {
@@ -27,13 +27,19 @@ export default function CurrencyConverter() {
       )
       .catch((err)=>console.log(err));
   },[]);
-  console.log("state[0].data:",state[0].data);
+
   const cryptoList = state[0].data.map((crypto)=>{
-    // console.log("price:",crypto);
+
     return (
       <MenuItem key ={crypto.name} value={crypto.current_price}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
     );
   })
+  const handleChange = (event) => {
+    if(Math.sign(event.target.value)){
+      console.log(event.target.value)
+      setNumber(event.target.value)
+    }
+  }
   const handleSecondary = (event) => {
     console.log("SecondaryValue:",event.target.value);
     setSecondary(event.target.value);
@@ -42,7 +48,19 @@ export default function CurrencyConverter() {
     console.log("PrimaryValue:",event.target.value);
     setPrimary(event.target.value)
   }
+  
+  const amount = number * primary;
 
+  const handleResult = () => {
+    let final = 0;
+    if(amount > secondary){
+      final = amount/secondary;
+    } else {
+      final = secondary/amount;
+    }
+    setResult(final);
+  }
+  console.log(result);
   return (
     
     <Box
@@ -51,6 +69,13 @@ export default function CurrencyConverter() {
         height: 500
       }}
     >
+      <TextField sx={{ m: 1, minWidth: 300 }}
+        id="outlined-number"
+        value={number}
+        label="Enter Amount to Convert"
+        type="number"
+        onChange={handleChange}
+      />
       <FormControl sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-helper-label">From</InputLabel>
         <Select
@@ -84,9 +109,12 @@ export default function CurrencyConverter() {
         <FormHelperText>Secondary Currency</FormHelperText>
       </FormControl>
       <div>
-        <Button variant="contained" endIcon={<SendIcon />}>
+        <Button variant="contained" endIcon={<SendIcon />} onClick={handleResult}>
           Convert
         </Button>
+      </div>
+      <div>
+      {result ? result : null}
       </div>
     </Box>
   );
