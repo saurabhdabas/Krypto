@@ -1,4 +1,5 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
+import axios from 'axios';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -7,14 +8,40 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import SendIcon from '@mui/icons-material/Send';
+import PrimarySearchAppBar from './Header/Header';
 
 
 export default function CurrencyConverter() {
-  const [age, setAge] = useState('');
+  const [ state, setState] = useState([{data:[]}]);
+  const [ primary, setPrimary] = useState(null);
+  const [ secondary, setSecondary] = useState(null);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  
+  useEffect(() => {
+    axios.get('/market') 
+      .then((res) => {
+        setState((prev)=>[{ ...prev,
+          data:res.data
+        }])
+        }
+      )
+      .catch((err)=>console.log(err));
+  },[]);
+  console.log("state[0].data:",state[0].data);
+  const cryptoList = state[0].data.map((crypto)=>{
+    // console.log("price:",crypto);
+    return (
+      <MenuItem key ={crypto.name} value={crypto.current_price}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
+    );
+  })
+  const handleSecondary = (event) => {
+    console.log("SecondaryValue:",event.target.value);
+    setSecondary(event.target.value);
   };
+  const handlePrimary = (event)=>{
+    console.log("PrimaryValue:",event.target.value);
+    setPrimary(event.target.value)
+  }
 
   return (
     
@@ -29,16 +56,14 @@ export default function CurrencyConverter() {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={age}
-          label="Age"
-          onChange={handleChange}
+          value={primary ? primary : ""}
+          label="Primary"
+          onChange={handlePrimary}
         >
           <MenuItem value="">
-            <em>None</em>
+            <em>Select a Coin</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {cryptoList}
         </Select>
         <FormHelperText>Primary Currency</FormHelperText>
       </FormControl>
@@ -47,16 +72,14 @@ export default function CurrencyConverter() {
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
-          value={age}
-          label="Age"
-          onChange={handleChange}
+          value={secondary ? secondary : ""}
+          label="Secondary"
+          onChange={handleSecondary}
         >
           <MenuItem value="">
-            <em>None</em>
+            <em>Select a Coin</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {cryptoList}
         </Select>
         <FormHelperText>Secondary Currency</FormHelperText>
       </FormControl>
