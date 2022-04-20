@@ -67,6 +67,13 @@ const Charts = () => {
         radius: 2
       }
     },
+    scales: {
+      x: {
+        ticks: {
+          maxTicksLimit: 12
+        }
+    }
+    },
     responsive:true,
     animation: {
       onComplete: () => {
