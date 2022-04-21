@@ -28,6 +28,7 @@ const Dashboard = () => {
       )
       .catch((err)=>console.log(err));
   },[]);
+  
   const inputHandler = (event) => {
     setSearch(event.target.value);
   };
