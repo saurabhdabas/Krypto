@@ -70,7 +70,7 @@ const Charts = () => {
     scales: {
       x: {
         ticks: {
-          maxTicksLimit: 12
+          maxTicksLimit: 27
         }
     }
     },
