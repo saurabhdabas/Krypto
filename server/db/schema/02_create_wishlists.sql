@@ -2,5 +2,8 @@ DROP TABLE IF EXISTS wishlists CASCADE;
 
 CREATE TABLE wishlists (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  user_email VARCHAR(255) NOT NULL,
+  crypto_id VARCHAR(255) NOT NULL,
+  image VARCHAR(255) NOT NULL,
+  user_email_cyrpto_id VARCHAR(255) NOT NULL UNIQUE
 );
