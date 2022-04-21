@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Dashboard from './components/Dashboard/Dashboard';
 
-import WatchList from './components/WatchList';
+import Wishlist from './components/Favorites/Wishlist';
 import SingleCrypto from './components/SingleCrypto/SingleCrypto';
 
 import ChatRooms from './components/Chat/ChatRooms';
@@ -26,7 +26,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>}/> 
           
           
-            <Route path="/watchlist" element={<WatchList/>}/>
+            <Route path="/watchlist" element={<Wishlist/>}/>
           
             <Route path="/news" element={<NewsList/>}/>
 
