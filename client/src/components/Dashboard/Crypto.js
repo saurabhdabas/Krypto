@@ -1,28 +1,14 @@
-import {React, useState } from 'react'
+import {React } from 'react'
 import { Link } from 'react-router-dom';
 import url from '../../helpers/urlDecoder';
 import Fab from '@mui/material/Fab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { red } from '@mui/material/colors';
-import axios from 'axios';
+
 
 const Crypto = (props) => {
-  // const color = red[500];
-  const [Favorite, setFavorite] = useState({
-    user:"",
-    favorite:""
-  });
-  const handleClick = ()=> {
-    const user = JSON.parse(localStorage.getItem('username'))
-    setFavorite({...Favorite,user:user.name,favorite:props.id});
-    console.log("Favorite:",Favorite);
-    if(Favorite.favorite){
-      axios.put('/user-fav', {data: Favorite}).then((response)=> {
-        console.log("response",response);
-      });
-    }
-  }
   
+  const user = JSON.parse(localStorage.getItem('username'));
   const decodedURL = url(props.id);
   return (
       <li>
@@ -35,7 +21,7 @@ const Crypto = (props) => {
         </div>
         <div>{props.current_price}</div>
         <div>{props.last_updated}</div>
-        <Fab aria-label="like" onClick={handleClick}><FavoriteIcon  style={{ color: red[500] }}/></Fab>
+        <Fab aria-label="like" onClick={()=>{props.setFavorite({name:user.name,favorite:props.name})}}><FavoriteIcon  style={{ color: red[500] }}/></Fab>
       </li>
   )
 }
