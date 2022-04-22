@@ -1,22 +1,25 @@
-import {React, useState, useEffect}  from 'react';
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge'
+import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu'
+import Menu from '@mui/material/Menu';
+
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch'
+import Switch from '@mui/material/Switch';
+import { useState,useEffect } from 'react';
 
-export default function PrimarySearchAppBar() {
+
+export default function Header(props) {
   const [value, setValue] = useState({});
   useEffect(() => {
     
@@ -24,9 +27,8 @@ export default function PrimarySearchAppBar() {
     
   }, []);
 
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -178,7 +180,6 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-
           </IconButton>
           
           <Typography
@@ -187,16 +188,15 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            {`Hello ${value.name}`}
+             {`Hello ${value.name}`}
           </Typography>
 
-          <Box sx={{ flexGrow: 1 }} />
-
-
+          <Box sx={{ flexGrow: 1 }}/>
           <FormGroup>
             <FormControlLabel
               control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-              
+              label={props.mode + " mode"}
+              onClick={() => (props.mode === 'dark') ? props.setMode('light') : props.setMode('dark')}
             />
           </FormGroup>          
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
@@ -211,7 +211,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <Badge badgeContent={0} color="error">
-                <NotificationsIcon />
+                <NotificationsIcon/>
               </Badge>
             </IconButton>
             <IconButton
@@ -244,4 +244,4 @@ export default function PrimarySearchAppBar() {
       {renderMenu}
     </Box>
   );
-}
+};
