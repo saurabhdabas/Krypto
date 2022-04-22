@@ -6,15 +6,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import ChatRoom from './ChatRoom';
-import Header from '../Header/Header';
+
 import Navigation from '../Navigation/Navigation';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { textAlign } from '@mui/system';
+
 const ChatRooms = () => {
   const [room, setRoom] = useState("");
   const theme = createTheme();
