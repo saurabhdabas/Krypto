@@ -39,10 +39,34 @@ app.put('/user-data',(req, res) => {
   .then(response => res.send(response.rows[0]))
   .catch(e => console.error(e.stack))
 });
-// Add Favourites to database
-app.put('/user-fav',(req,res) =>{
-  console.log("req:",req);
+// Add Favourites to wishlist/watchlist
+app.put('/user-fav',(req, res) => {
+  
+  let response = req.body.data;
+
+  db.query(`INSERT INTO wishlists (username,email,crypto_id,img,email_crypto_id)
+  VALUES ($1, $2, $3, $4, $5) RETURNING *;`,[req.body.data.username, req.body.data.email, req.body.data.fav,req.body.data.img,`${req.body.data.email}${req.body.data.fav}`])
+    .then((res) => res.send(res))
+    .catch((error) => res.send(error));
 });
+// //Retrive all the favorites from the wishlist
+// app.put('/fav-list',(req, res) => {
+//   let response = req.body.user.email;
+//   console.log("this is the response: " , response);
+//   db.query(`select crypto_id, image FROM wishlists where user_email = $1`, [response])
+//     .then(response => res.send(response.rows))
+//     .catch((error) => res.send(error));
+// });
+// //Delete Favorites from wishlist
+// app.put('/user-delete',(req, res) => {
+//   let response = req.body.data;
+//   console.log("req.body for fav: " , req.body);
+//   db.query(`DELETE FROM wishlists WHERE user_email = $1 and crypto_id = $2;`, [req.body.user.email,req.body.data])
+//     .then((res) => res.send(res))
+//     .catch((error) => res.send(error));
+// });
+
+
 
 // Socket Connection 
 const server = http.createServer(app);
