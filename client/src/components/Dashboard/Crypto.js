@@ -7,13 +7,13 @@ import { red } from '@mui/material/colors';
 
 
 const Crypto = (props) =>{
-
+  
   const user = JSON.parse(localStorage.getItem('username'));
   const decodedURL = url(props.id);
   return (
     <li>
       <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
-        <img src={props.image} alt={props.name}></img>
+        <img src={props.image} width= "50" alt={props.name}></img>
       </Link>
       <div>
         <span>{props.name}</span>
@@ -21,7 +21,15 @@ const Crypto = (props) =>{
       </div>
       <div>{props.current_price}</div>
       <div>{props.last_updated}</div>
-      <Fab aria-label="like" onClick={(prev)=>props.setFavorite(({...prev,user:user.name,fav:props.name}))}><FavoriteIcon  style={{ color: red[500] }}/></Fab>
+      <Fab aria-label="like" onClick={(prev)=>props.setFavorite(
+        ({...prev,
+        username:user.name,
+        email:user.email,
+        fav:props.name,
+        img:props.image
+        }))}>
+          <FavoriteIcon  style={{ color: red[500] }}/>
+      </Fab>
     </li>
   )
 }
