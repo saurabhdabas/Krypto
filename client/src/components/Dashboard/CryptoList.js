@@ -1,6 +1,14 @@
 import {React,useState, useEffect} from 'react';
 import axios from 'axios';
 import Crypto from './Crypto';
+import { Grid } from "@mui/material";
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
+import MarketCryptoHeader from '../Header/MarketCryptoHeader';
 
 const CryptoList = (props) => {
   
@@ -44,9 +52,17 @@ const CryptoList = (props) => {
     );
   });
   return (
-    <div>
-      {CoinsList}
-    </div>
+  <Grid container direction={"column"} style={{maxHeight: '50vh', overflow: 'hidden' }}>      
+            
+    <TableContainer component={Paper}>
+      <Table stickyHeader aria-label="sticky table" align="left">
+        <MarketCryptoHeader/>
+        <TableBody>  
+            {CoinsList}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  </Grid>
   )
 };
 
