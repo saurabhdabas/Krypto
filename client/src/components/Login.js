@@ -177,7 +177,7 @@
 // export default Login;
 
 import * as React from 'react';
-import { useState } from 'react';
+
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
@@ -210,23 +210,12 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const [values, setValues] = useState({
-    email : '',
-    password: ''
-  });
+
   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // setValues({
-    //         ...values ,
-    //         email: data.get('email'),
-    //         password: data.get('password'),
-    //       })
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
     const values = {
       email: data.get('email'),
       password: data.get('password'),
