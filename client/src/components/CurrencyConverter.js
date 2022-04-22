@@ -11,9 +11,7 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import TextField from '@mui/material/TextField';
-import Avatar from '@mui/material/Avatar';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
-import { CircularProgress, Grid, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Navigation from './Navigation/Navigation';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 
