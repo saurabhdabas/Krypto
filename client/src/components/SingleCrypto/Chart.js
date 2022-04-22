@@ -1,6 +1,12 @@
 import {React, useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+
 import { 
   Chart as 
   ChartJS,  
@@ -23,6 +29,42 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
+const BootstrapButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 16,
+  padding: '6px 12px',
+  border: '1px solid',
+  lineHeight: 1.5,
+  backgroundColor: '#0063cc',
+  borderColor: '#0063cc',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#0069d9',
+    borderColor: '#0062cc',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+    borderColor: '#005cbf',
+  },
+  '&:focus': {
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+  },
+});
 
 const Charts = () => {
   const { id } = useParams();
@@ -88,14 +130,46 @@ const Charts = () => {
       }
     }
   }
+
   return (
-  <>
-    <Line data={data} options = {options}/>
-    <button onClick={() => dayHandler(1)}>One Day</button>
-    <button onClick={() => dayHandler(7)}>One Week</button>
-    <button onClick={() => dayHandler(30)}>One Month</button>
-    <button onClick={() => dayHandler(365)}>One Year</button>
-  </>
+  <Box width='100%'>
+    <Grid container spacing={5} direction='column'>
+    <Paper elevation={3}>
+      <Line data={data} options = {options}/>
+    </Paper>
+      
+
+      <Grid container spacing={3}>
+
+        <Grid mt={8} item xs={3} style={{ display: "flex", alignItems: "center" , justifyContent: 'center'}}>
+          <BootstrapButton variant="contained" disableRipple onClick={() => dayHandler(1)}>
+          One Day
+          </BootstrapButton>
+        </Grid>
+    
+        <Grid mt={8} item xs={3} style={{ display: "flex", alignItems: "center" , justifyContent: 'center' }}>
+          <BootstrapButton variant="contained" disableRipple onClick={() => dayHandler(7)}>
+          One Week
+          </BootstrapButton>
+        </Grid>
+    
+        <Grid mt={8} item xs={3} style={{ display: "flex", alignItems: "center" , justifyContent: 'center' }}>
+          <BootstrapButton variant="contained" disableRipple onClick={() => dayHandler(30)}>
+          One Month
+          </BootstrapButton>
+        </Grid>
+    
+        <Grid mt={8} item xs={3} style={{ display: "flex", alignItems: "center" , justifyContent: 'center' }}>
+          <BootstrapButton variant="contained" disableRipple onClick={() => dayHandler(365)}>
+            One Year
+          </BootstrapButton>
+        </Grid>
+
+      </Grid>
+
+    </Grid>
+
+  </Box>
   )
 }
 
