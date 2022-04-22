@@ -3,15 +3,23 @@ import axios from 'axios';
 import Crypto from './Crypto';
 
 const CryptoList = (props) => {
-
+  
   const [favorite, setFavorite]= useState({
-    user:"",
-    fav:""
+    username:"",
+    email:"",
+    fav:"",
+    img:""
   });
   
   const handleClick = () => {
-    if(favorite.user && favorite.fav){
-      axios.put('/user-fav', {data:{user:favorite.user,fav:favorite.fav}})
+    if(favorite.username && favorite.fav ){
+      console.log("fav:",favorite);
+      axios.put('/user-fav',{data:{
+        username:favorite.username,
+        email:favorite.email,
+        fav:favorite.fav,
+        img:favorite.img
+      }})
       .then((res) => console.log("This is the responds from /user-fav post: ", res)).catch((error) => console.log("from user-fav error: ", error))
     }
   }
