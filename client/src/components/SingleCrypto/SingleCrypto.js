@@ -6,7 +6,8 @@ import Chart from './Chart';
 import Description from './Description';
 import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
-
+import { Box } from '@mui/system';
+import Grid from '@mui/material/Grid';
 
 const SingleCrypto = () => {
   const { id } = useParams();
@@ -38,7 +39,11 @@ const SingleCrypto = () => {
     <div>
       <Header/>
       <Navigation/>
-      <Chart/>
+      <Box m='auto' sx={{ width: '80%' }}>
+        <Grid container>
+          <Chart/>
+        </Grid>
+      </Box>
       <Description description = {state[0]}/>
     </div>
   )
