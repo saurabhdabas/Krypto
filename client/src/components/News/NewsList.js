@@ -1,7 +1,8 @@
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import News from './News'
-import Header from '../Header/Header';
+
+import Box from  '@mui/material/Box';
 import Navigation from '../Navigation/Navigation';
 import CircularProgress from '@mui/material/CircularProgress';
 const NewsList = () => {
@@ -28,16 +29,24 @@ const NewsList = () => {
   const newsList = news.map((article)=>{
     
     return (
+      
       <News key={article.title} title={article.title} image={article.image} description={article.desc} date={article.date} source={article.url} />
+      
     )
   })
+
   return (
-    <>
-      <Header/>
-      <Navigation/>
-      {loading ? newsList : <CircularProgress/>}
-      {/* {newsList} */}
-    </>
+    <Box sx={{ml:5, mt:5, mr:5, mb:5}} display="grid" gridTemplateColumns="repeat(6, 1fr)">
+      <Box gridColumn="span 1">
+        <Navigation/>
+      </Box>
+      <Box gridColumn="span 5">
+        {loading ?
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',gridAutoRows: '1fr'}}>
+          {newsList}
+        </Box> : <CircularProgress/>}
+      </Box>
+    </Box>
   )
 }
 
