@@ -6,12 +6,16 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
-import SendIcon from '@mui/icons-material/Send';
+import Chip from '@mui/material/Chip';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import TextField from '@mui/material/TextField';
-import Header from './Header/Header';
+import Avatar from '@mui/material/Avatar';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { CircularProgress, Grid, Typography } from "@mui/material";
 import Navigation from './Navigation/Navigation';
+import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
 
 export default function CurrencyConverter() {
   const [ state, setState] = useState([{data:[]}]);
@@ -68,9 +72,7 @@ export default function CurrencyConverter() {
       name:event.target.value.name,
       image:event.target.value.image
     })
-    setResult('')
-    
-    // console.log('primary values', event.target.value.current_price, event.target.value.id)
+    setResult('');
   }
 
   const amount = number * primary.price;
@@ -100,14 +102,21 @@ export default function CurrencyConverter() {
 
   return (
     <>
-    <Header/>
+    {/* <Header/> */}
     <Navigation/>
+    
     <Box
       sx={{
+        m:'auto',
         width: 500,
-        height: 500
+        height: 500,
+        display: 'grid',
+        gridTemplateRows: 'repeat(4, 1fr)',
+        alignItems:'center',
+        // justifyItems:'center'
       }}
     >
+      <Typography variant="h4" textAlign={'center'}>Crypto Currency Converter</Typography> 
       <TextField sx={{ m: 1, minWidth: 300 }}
         id="outlined-number"
         value={number}
@@ -127,11 +136,9 @@ export default function CurrencyConverter() {
           renderValue={(crypto)=> {
             if(crypto.image) {
               return(
-                <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
+              <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
               )
-            }
-           
-
+            };
           }}
           label="Primary"
           onChange={handlePrimary}
@@ -146,6 +153,7 @@ export default function CurrencyConverter() {
       <FormControl sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-helper-label">To</InputLabel>
         <Select
+          
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={secondary}
@@ -156,9 +164,7 @@ export default function CurrencyConverter() {
               return(
                 <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
               )
-            }
-           
-
+            };
           }}
         >
           <MenuItem value="">
@@ -168,18 +174,29 @@ export default function CurrencyConverter() {
         </Select>
         <FormHelperText>Secondary Currency</FormHelperText>
       </FormControl>
-      <div>
-        <Button variant="contained" endIcon={<SendIcon />} onClick={handleResult}>
+      <Stack spacing={35} direction='row' m={2}>
+        <Button variant="contained" size="medium" endIcon={<SwapVerticalCircleIcon />} onClick={handleResult}>
           Convert
         </Button>
         <Button variant="contained" endIcon={<RefreshIcon />} onClick={handleRefresh}>
           Clear
         </Button>
-      </div>
-      <div>
-      {result ? `${number} ${primary.name} = ${result} ${secondary.name}` : null}
-      </div>
+      </Stack>
+      <Box
+        sx={{
+          m:'auto',
+          width: 500,
+          height: 50,
+          display:'grid',
+          alignItems:'center',
+          justifyItems:'center'
+        }}>
+      {result ?
+      <Chip p={5} color="success" label={<Typography variant="h6" textAlign={'center'}>{`${number} ${primary.name} = ${result} ${secondary.name}`}</Typography>}> 
+      </Chip>: null}
+      </Box>
     </Box>
+    
     </>
   );
 }
