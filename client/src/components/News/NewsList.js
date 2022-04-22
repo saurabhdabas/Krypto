@@ -36,13 +36,13 @@ const NewsList = () => {
   })
 
   return (
-    <Box sx={{ml:5, mt:5, mr:5, mb:5}} display="grid" gridTemplateColumns="repeat(6, 1fr)">
-      <Box gridColumn="span 1">
+    <Box sx={{mt:10,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
+      <Box gridColumn="span 0.5">
         <Navigation/>
       </Box>
-      <Box gridColumn="span 5">
+      <Box gridColumn="span 10">
         {loading ?
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)',gridAutoRows: '1fr'}}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',gridAutoRows: '1fr'}}>
           {newsList}
         </Box> : <CircularProgress/>}
       </Box>
