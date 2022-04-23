@@ -3,7 +3,7 @@ import React from 'react'
 import { Grid, Paper } from '@mui/material';
 
 const Description = (props) => {
-  
+  console.log("propsss:",props);
   return (
   <div>
     <Grid container  >
