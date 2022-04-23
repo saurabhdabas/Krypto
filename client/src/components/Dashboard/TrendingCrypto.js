@@ -7,6 +7,10 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import Paper from '@mui/material/Paper';
 
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import dateConvert from '../../helpers/dateConvert';
+import '../../index.css'
+import nameSlice from '../../helpers/nameSlice';
 function TrendingCrypto(props) {
   let decodedURL = url(props.id)
   return (
@@ -15,40 +19,43 @@ function TrendingCrypto(props) {
     <Grid  style={{flexWrap: 'wrap'}} >
       <Paper
         sx={{
-          p: 2,
+          p: 1,
           margin: 'auto',
           maxWidth: 500,
           flexGrow: 1,
           backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+          theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)',
       }}>
         <Grid container spacing={0}>
           <Grid item>
             <ButtonBase sx={{ width: 50, height: 100 }}>
-            <Link to={`/crypto/${decodedURL}`}><img src={props.image} alt={props.name} width="50"/>  </Link>
+            <Link to={`/crypto/${decodedURL.toLowerCase()}`}><img src={props.image} alt={props.name} width="50"/>  </Link>
             </ButtonBase>
           </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1" component="div">
-                 {props.name}
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                ${props.current_price}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                {props.last_updated}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1" component="div">
-              {Math.round(props.price_change_percentage_24h)}%
+          <Grid item xs={15} sm container >
+          <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs>
+              <Typography gutterBottom variant="subtitle1" component="div">
+               {nameSlice(props.name)}
               </Typography>
-            </Grid> 
+              <Typography variant="body2" gutterBottom>
+              ${(props.current_price).toFixed(2)}
+              </Typography>
+            <Typography variant="body2" gutterBottom>
+              {dateConvert(props.last_updated)}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid item sx={{direction: "row", justifyContent: "center"}} >
+            
+            
+            <Typography variant="subtitle1" component="div" style={{color: "green"}} >
+            {Math.round(props.price_change_percentage_24h)}%  
+             </Typography>
+
+
+          </Grid>
+          <FileUploadIcon style={{color: "green", mt:4}}/>
           </Grid>
         </Grid>
       </Paper>
