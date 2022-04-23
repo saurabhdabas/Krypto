@@ -1,10 +1,9 @@
-DROP TABLE IF EXISTS wishlists CASCADE;
+DROP TABLE IF EXISTS watchlists CASCADE;
 
-CREATE TABLE wishlists (
+CREATE TABLE watchlists (
   id SERIAL PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
+  user_email VARCHAR(255) NOT NULL,
   crypto_id VARCHAR(255) NOT NULL,
-  img VARCHAR(255) NOT NULL,
-  email_crypto_id VARCHAR(255) NOT NULL UNIQUE
+  image VARCHAR(255) NOT NULL,
+  user_email_crypto_id VARCHAR(255) NOT NULL UNIQUE
 );
