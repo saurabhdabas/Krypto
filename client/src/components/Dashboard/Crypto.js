@@ -17,6 +17,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import '../../index.css'
 
 const Crypto = (props) => {
+  console.log("props:",props);
   const decodedURL = url(props.id);
   const [textColor, setTextColor] = useState('black');
   useEffect(() => {
@@ -77,7 +78,7 @@ const Crypto = (props) => {
         </TableCell>
       :
         <TableCell>
-          <Button aria-label="like"  onClick={() => props.setFav([props.id, props.image])}>
+          <Button aria-label="like"  onClick={() => props.setFavorite([props.id, props.image])}>
             <FavoriteIcon style={{ color: red[500] }}/>
           </Button>
         </TableCell> 
