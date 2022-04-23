@@ -1,11 +1,19 @@
 import {React, useState, useEffect} from 'react';
 import axios from 'axios';
 import News from './News'
-
+import { Grid } from '@mui/material';
 import Box from  '@mui/material/Box';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation'
+
 import CircularProgress from '@mui/material/CircularProgress';
-const NewsList = () => {
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const NewsList = (props) => {
+  const darkTheme = createTheme({
+    palette: {
+      mode: props.mode,
+    },
+  });
   const[news, setNews] = useState([])
   const[loading, setLoading] = useState(false)
   const options = {
@@ -36,17 +44,21 @@ const NewsList = () => {
   })
 
   return (
-    <Box sx={{mt:10,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
-      <Box gridColumn="span 0.5">
-        <Navigation/>
+    <ThemeProvider theme={darkTheme}>
+      <Grid container justifyContent={"center"}>
+      <Box sx={{mt:10,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
+        <Box gridColumn="span 0.5">
+          <Navigation mode={props.mode} setMode={props.setMode}/>
+        </Box>
+        <Box gridColumn="span 10">
+          {loading ?
+          <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',gridAutoRows: '1fr'}}>
+            {newsList}
+          </Box> : <CircularProgress/>}
+        </Box>
       </Box>
-      <Box gridColumn="span 10">
-        {loading ?
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',gridAutoRows: '1fr'}}>
-          {newsList}
-        </Box> : <CircularProgress/>}
-      </Box>
-    </Box>
+      </Grid>
+    </ThemeProvider>
   )
 }
 
