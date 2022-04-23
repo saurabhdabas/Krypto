@@ -17,7 +17,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import '../../index.css'
 
 const Crypto = (props) => {
-  console.log("props:",props);
+  
   const decodedURL = url(props.id);
   const [textColor, setTextColor] = useState('black');
   useEffect(() => {
