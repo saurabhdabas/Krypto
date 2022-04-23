@@ -16,22 +16,10 @@ div.dark{
   color: rgb(238, 238, 238);
 }
 
-div.testing{
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 100%; 
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-div.rowTest{
-  display: flex;
-  flex-direction: row;
-}
-
 
 div.shiftdown{
    display: flex;
