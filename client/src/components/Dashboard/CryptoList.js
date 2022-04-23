@@ -25,8 +25,8 @@ const CryptoList = (props) => {
     props.setRender(deleted);
     if (deleted) {
     axios.put(`/user-delete`, {data: deleted , user: JSON.parse(localStorage.getItem('username'))})
-    }
   }
+}
   useEffect(() => {
     handleSubmitWatchlist();
   }, [deleted]);
@@ -65,9 +65,9 @@ const CryptoList = (props) => {
 
   const arr =[];
   const filter = state[0].watchlist.map((marketCrypto) => {
-    props.data.map((crypto)=> {
+    props.data.map((crypto) => {
       if (marketCrypto.crypto_id === crypto.id) {
-        arr.push(crypto)
+        return arr.push(crypto)
       }
     })
   })
@@ -92,7 +92,7 @@ const CryptoList = (props) => {
     );
   });
 
-  const CoinsList = props.data.map((crypto)=>{
+  const marketCrypto = props.data.map((crypto)=>{
     return (
       <Crypto
       key = {crypto.name} 
@@ -127,7 +127,7 @@ const CryptoList = (props) => {
               <MarketCryptoHeader dashboard={props.dashboard}/>
                     <TableBody>  
                         {(props.dashboard === "market") ? 
-                        CoinsList : watchlistCrypto}
+                        marketCrypto : watchlistCrypto}
                     </TableBody>
             </Table>
           </TableContainer>
