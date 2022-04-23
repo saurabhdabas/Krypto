@@ -1,1 +1,0 @@
-INSERT INTO wishlists (user_email,crypto_id,image,user_email_crypto_id) VALUES ('DemoUser','demo.sandchez@gmail.com', 'Bitcoin','https://static.wikia.nocookie.net/rickandmorty/images/3/3c/Untitled117.png/revision/latest/top-crop/width/360/height/360?cb=20190519213632','demo.sandchez@gmail.comBitcoin');
