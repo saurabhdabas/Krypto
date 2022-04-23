@@ -1,4 +1,4 @@
-import  { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -11,7 +11,7 @@ function Chat({ socket, user, room, img }) {
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
-        img : img,
+        img: img,
         room: room,
         author: user,
         message: currentMessage,
@@ -29,13 +29,14 @@ function Chat({ socket, user, room, img }) {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log("data:",data);
+
       setMessageList((list) => [...list, data]);
+      
     });
   }, [socket]);
-  
+
   return (
-    <div className="chat-window">
+<div className="chat-window">
       <div className="chat-header">
         <p>Welcome to {room} chat</p>
       </div>
@@ -83,5 +84,4 @@ function Chat({ socket, user, room, img }) {
     </div>
   );
 }
-
 export default Chat;
