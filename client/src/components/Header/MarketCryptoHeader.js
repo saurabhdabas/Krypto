@@ -1,27 +1,37 @@
-import { Typography } from '@mui/material'
-import React from 'react'
-import { Grid } from '@mui/material'
-import TableRow from '@mui/material/TableRow';
+import React from 'react';
 import TableHead from '@mui/material/TableHead';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import Paper from '@mui/material/Paper';
 
-const MarketCryptoHeader = () => {
+import TableCell from '@mui/material/TableCell';
+const MarketCryptoHeader = (props) => {
   return (
-   
-      <TableHead>
-         <TableCell align="left">Symbol</TableCell>
-          <TableCell align="left">Currency</TableCell>
-          <TableCell align="left">Current Price</TableCell>
-          <TableCell align="left">Change</TableCell>
-          <TableCell align="left">Last Updated</TableCell>
-          <TableCell align="left">Add To Watchlist</TableCell>
-        </TableHead>
- 
-  )
+      <TableHead >
+         <TableCell align="left"  sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>Symbol</TableCell>
+          <TableCell align="left" sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>Currency</TableCell>
+          <TableCell align="left" sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>Current Price</TableCell>
+          <TableCell align="left" sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>Change</TableCell>
+          <TableCell align="left" sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>Last Updated</TableCell>
+          <TableCell align="left" sx= {
+        {backgroundColor: (theme) =>
+        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+      }>{(props.dashboard === 'market')? "Add To Watchlist" : "Remove"}
+        </TableCell>
+      </TableHead>
+  );
 }
 
-export default MarketCryptoHeader;
+export default MarketCryptoHeader
