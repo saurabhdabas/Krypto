@@ -14,8 +14,14 @@ import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 import Navigation from './Navigation/Navigation';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-export default function CurrencyConverter() {
+export default function CurrencyConverter(props) {
+  const darkTheme = createTheme({
+    palette: {
+      mode: props.mode,
+    },
+  });
   const [ state, setState] = useState([{data:[]}]);
   const [ primary, setPrimary] = useState({
     price:"",
@@ -94,14 +100,15 @@ export default function CurrencyConverter() {
     setSecondary({
     price:"",
     name:"",
-  image:""});
+    image:""});
     setResult("");
   }
 
   return (
+    <ThemeProvider theme={darkTheme}>
     <>
     {/* <Header/> */}
-    <Navigation/>
+    <Navigation mode={props.mode} setMode={props.setMode}/>
     
     <Box
       sx={{
@@ -134,7 +141,7 @@ export default function CurrencyConverter() {
           renderValue={(crypto)=> {
             if(crypto.image) {
               return(
-              <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}<img src={crypto.image}alt = "crypto" width = '30' ></img></MenuItem>
+              <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}><img src={crypto.image}alt = "crypto" width = '30'/>{crypto.name}</MenuItem>
               )
             };
           }}
@@ -196,5 +203,6 @@ export default function CurrencyConverter() {
     </Box>
     
     </>
+    </ThemeProvider>
   );
 }
