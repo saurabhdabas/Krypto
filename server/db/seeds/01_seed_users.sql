@@ -5,3 +5,5 @@ INSERT INTO users (email, password, name, img) VALUES ('joe@gmail.com', '123', '
 INSERT INTO users (email, password, name, img) VALUES ('mark@gmail.com', '123', 'Mark', 'https://pickaface.net/gallery/avatar/EstherBeedleH51dc35acb3d14.png');
 
 INSERT INTO users (email, password, name, img) VALUES ('amy.sandchez@gmail.com', '123', 'Amy', 'https://pickaface.net/gallery/avatar/unr_lieke_220315_1522_113e55.png');
+
+INSERT INTO users (email, password, name, img) VALUES ('saurabh.dabas@gmail.com', '123', 'Saurabh', 'images/profile-pic.jpg');
