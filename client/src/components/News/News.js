@@ -1,5 +1,5 @@
 import { React } from 'react'
-import Box from  '@mui/material/Box';
+import { Box } from '@mui/system';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,6 +7,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import {descriptionspliter, titlespliter} from '../../helpers/descriptionSpilter';
+import { newsDateConvert } from '../../helpers/dateConvert';
+
 import Paper from '@mui/material/Paper';
 
 
@@ -17,7 +20,7 @@ const News = ({title, image, description, date, source}) => {
   <Box m="auto">  
         {/* <Item sx={{ gridRow: '1', gridColumn: 'span 2' }}> */}
         <Paper elevation={3}> 
-          <Card sx={{ maxWidth: 400}}>
+          <Card sx={{ maxWidth: 300}}>
             <CardMedia
               component="img"
               alt="news"
@@ -27,13 +30,13 @@ const News = ({title, image, description, date, source}) => {
             <Divider variant="inset"/>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {date}
+                {newsDateConvert(date)}
               </Typography>
               <Typography gutterBottom variant="h5" component="div">
-                {title}
+                {titlespliter(title)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {description}
+                {descriptionspliter(description)}
               </Typography>
             </CardContent>
             <Divider variant="middle"/>
@@ -47,4 +50,3 @@ const News = ({title, image, description, date, source}) => {
 }
 
 export default News;
-
