@@ -70,7 +70,8 @@ const CryptoList = (props) => {
         return arr.push(crypto)
       }
     })
-  })
+  });
+  console.log("filter:",filter);
 
   const watchlistCrypto = arr.map((crypto)=>{
     return (
