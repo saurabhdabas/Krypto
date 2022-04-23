@@ -6,7 +6,7 @@ import Chart from './Chart';
 import Description from './Description';
 
 import Navigation from '../Navigation/Navigation';
-import { Box } from '@mui/system';
+
 import Grid from '@mui/material/Grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
