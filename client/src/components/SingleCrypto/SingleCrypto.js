@@ -4,12 +4,18 @@ import axios from 'axios';
 
 import Chart from './Chart';
 import Description from './Description';
-import Header from '../Header/Header';
+
 import Navigation from '../Navigation/Navigation';
 import { Box } from '@mui/system';
 import Grid from '@mui/material/Grid';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const SingleCrypto = () => {
+const SingleCrypto = (props) => {
+  const darkTheme = createTheme({
+    palette: {
+      mode: props.mode,
+    },
+  });
   const { id } = useParams();
   const [state, setState] = useState([{
     img: "",
@@ -36,16 +42,26 @@ const SingleCrypto = () => {
   },[id]);
   
   return (
-    <div>
-      <Header/>
-      <Navigation/>
-      <Box m='auto' sx={{ width: '80%' }}>
-        <Grid container>
-          <Chart/>
-        </Grid>
-      </Box>
-      <Description description = {state[0]}/>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <Grid container direction={'column'}  alignItems="center" justifyContent="center">
+      
+         <Navigation mode={props.mode} setMode={props.setMode}/>
+      
+         <Grid item mb={0} >
+           <img src = {state[0].img} width={100} alt="logo"></img>
+           <div>{state[0].data.name}</div>
+         </Grid>
+      
+         <Grid item mt={5}  width={800}>
+           <Chart id={props.id} />
+         </Grid>
+      
+         <Grid item >
+           <Description details={state[0]} id ={id}/>
+         </Grid>
+        
+       </Grid>
+    </ThemeProvider>
   )
 }
 
