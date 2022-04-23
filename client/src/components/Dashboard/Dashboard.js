@@ -7,22 +7,36 @@ import TrendingCryptoList from './TrendingCryptoList';
 import SearchForm from './SearchForm';
 import topFourTrending from '../../helpers/topFourTrending';
 import searchFilter from '../../helpers/searchFilter';
-import Header from '../Header/Header';
+// import Header from '../Header/Header';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CircularProgress, Grid, Typography } from "@mui/material";
 import { Box} from "@mui/system";
-
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Button } from "@mui/material";
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 
 const Dashboard = (props) => {
+  console.log("props:",props);
   const darkTheme = createTheme({
     palette: {
       mode: props.mode,
     },
   });
+
   const [state, setState] = useState([{
     trending:[],
     market:[]
   }]);
+
+  const [render, setRender] = useState("");
+  const [dashboard, setDashboard] = useState("market");
+  const handlewatchlist = () => {
+    if (dashboard === 'market') {
+    setDashboard("watchlist");
+    } else if (dashboard === 'watchlist') {
+      setDashboard("market");
+    }
+  }
 
   const[search, setSearch] = useState("");
   const[loading, setLoading] = useState(false);
@@ -56,38 +70,34 @@ const Dashboard = (props) => {
   }, [props.mode])
 
   return (
-
     <ThemeProvider theme={darkTheme}>
-    
 
-      <Header mode={props.mode} setMode={props.setMode}/>
-
-      <Box sx={{ml:2, mt:4, mr:2, mb:4}}>
-        <Grid container spacing={2}>
-          <Grid>
+    <Box sx={{ mt: -4 }}>
+      <Grid container justifyContent={"center"}>
+          {loading ? 
+          (<div>        
             <Navigation mode={props.mode} setMode={props.setMode}/>
-          </Grid>
+            <Typography fontSize={25} >Dashboard</Typography> 
+            <Typography align="center" fontSize={14} >Trending</Typography> 
+            <TrendingCryptoList data={state[0].trending}/> 
+            <Grid pt={4} >
+              <SearchForm search={search} onChange={inputHandler} mode={props.mode} setMode={props.setMode}/>
+            </Grid>
+            <Grid >
+              <Grid display={'flex'} direction={"row"} justifyContent={"end"}>
+              {(dashboard === "market") ? <Button onClick={handlewatchlist}>Watch List <FavoriteBorderIcon/></Button> : <Button onClick={handlewatchlist}>Market <CurrencyBitcoinIcon/></Button>}
+              </Grid>
+              <CryptoList render={render} setRender={setRender} dashboard={dashboard} data={filteredRows} mode={props.mode} 
+            setMode={props.setMode}/>
+            </Grid>
+        
+          </div>)
+          : <CircularProgress/>} 
+  
+      </Grid>
+    </Box>
 
-          <Grid>
-          <Typography variant="h3">Dashboard</Typography> 
-            
-            {loading ? 
-            (<div>
-              <Grid >
-               <Typography align="center" variant="h4">Trending</Typography> 
-                <TrendingCryptoList data={state[0].trending}/> 
-              </Grid>
-              <SearchForm search={search} onChange={inputHandler}/>
-                     
-              <Grid>
-                <CryptoList data={filteredRows}/>
-              </Grid>
-            </div>)
-            : <CircularProgress/>} 
-          </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+  </ThemeProvider>
   )
 }
 
