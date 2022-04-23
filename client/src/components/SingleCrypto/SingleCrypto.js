@@ -28,6 +28,7 @@ const SingleCrypto = (props) => {
   useEffect(() => {
     axios.get(`/crypto/${id}`) 
       .then((res) => {
+        console.log("res:",res);
         setState((prev)=>[{ ...prev,
           img:res.data.image.large,
           data: res.data,
@@ -40,7 +41,7 @@ const SingleCrypto = (props) => {
       )
       .catch((err)=>console.log(err));
   },[id]);
-  
+  console.log("state:",state);
   return (
     <ThemeProvider theme={darkTheme}>
       <Grid container direction={'column'}  alignItems="center" justifyContent="center">
@@ -57,7 +58,7 @@ const SingleCrypto = (props) => {
          </Grid>
       
          <Grid item >
-           <Description details={state[0]} id ={id}/>
+           <Description description={state[0]} id ={id}/>
          </Grid>
         
        </Grid>
