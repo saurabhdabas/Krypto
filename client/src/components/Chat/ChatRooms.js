@@ -1,11 +1,12 @@
-import { React, useState} from 'react';
+import { React, useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ChatRoom from './ChatRoom';
+
+import Chat from './Chat';
 
 import Navigation from '../Navigation/Navigation';
 import Box from '@mui/material/Box';
@@ -14,8 +15,29 @@ import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import io from 'socket.io-client';
+const socket = io.connect("http://localhost:8081");
+
+
 const ChatRooms = () => {
   const [room, setRoom] = useState("");
+  const [user, setUser] = useState({});
+
+
+  useEffect(() => {
+    
+    setUser(JSON.parse(localStorage.getItem('username')));
+    
+  }, []);
+
+  const joinRoom = (room) => {
+    setRoom(room);
+  };
+
+  useEffect(()=>{
+    socket.emit("join_room", room);
+  },[room])
+ 
   const theme = createTheme();
   const button = () => {
     console.log('this is the value of room', room)
@@ -50,15 +72,13 @@ const ChatRooms = () => {
                       alt="green iguana"
                     />
                     <CardContent>
-                      {/* <Typography gutterBottom variant="h5" component="div">
-                        # TRENDING
-                      </Typography> */}
+
                       <Typography variant="body2" color="text.secondary">
                         Join the Room to talk about what's hot in the crypto market.
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="medium" variant="contained" onClick={()=> {setRoom('trending')} } >Join Room</Button>
+                      <Button size="medium" variant="contained" onClick={()=>{joinRoom('trending')}} >Join Room</Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -72,15 +92,13 @@ const ChatRooms = () => {
                       alt="green iguana"
                     />
                     <CardContent>
-                      {/* <Typography gutterBottom variant="h5" component="div">
-                        # INVESTMENTS
-                      </Typography> */}
+
                       <Typography variant="body2" color="text.secondary">
                       Join the Room to talk about what's hot in the crypto market.
                       </Typography>
                     </CardContent>
                     <CardActions >
-                      <Button size="medium" variant="contained" onClick={()=> {setRoom('investments')}} >Join Room</Button>
+                      <Button size="medium" variant="contained" onClick={()=>{joinRoom('investments')}} >Join Room</Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -94,15 +112,13 @@ const ChatRooms = () => {
                       alt="green iguana"
                     />
                     <CardContent>
-                      {/* <Typography gutterBottom variant="h5" component="div">
-                      # GENERAL
-                      </Typography> */}
+
                       <Typography variant="body2" color="text.secondary">
                         Join the Room to share your thoughts and talk crypto in general.
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="medium" variant="contained" onClick={()=> {setRoom('general')}} >Join Room</Button>
+                      <Button size="medium" variant="contained" onClick={()=>{joinRoom('general')}} >Join Room</Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -116,15 +132,13 @@ const ChatRooms = () => {
                       alt="green iguana"
                     />
                     <CardContent>
-                      {/* <Typography gutterBottom variant="h5" component="div">
-                        # EVENTS
-                      </Typography> */}
+
                       <Typography variant="body2" color="text.secondary">
                         Join the Room to talk about various crypto events happening around the globe.
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="medium" variant="contained" onClick={()=> {setRoom('events')}} >Join Room</Button>
+                      <Button size="medium" variant="contained" onClick={()=>{joinRoom('events')}} >Join Room</Button>
                     </CardActions>
                   </Card>
                 </Grid>
@@ -136,17 +150,17 @@ const ChatRooms = () => {
     } else {
       return (
         <Box>
-
-          <Button variant="contained"onClick={()=> {setRoom('')}}>Leave Room</Button>
-          <ChatRoom roomId={room}/>
+          <Chat socket={socket} user={user.name} img={user.img} room={room} />
+          <Button variant="contained" onClick={()=> {setRoom('')}}>Leave Room</Button>
         </Box>
+
       );
     }
   }
 
   return (
     <div>
-      {/* <Header/> */}
+
       <Navigation/>
       {button()}
       
