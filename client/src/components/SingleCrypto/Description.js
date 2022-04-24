@@ -1,13 +1,14 @@
 import React from 'react'
 
-import { Grid, Paper } from '@mui/material';
+import { Grid,Box, Paper } from '@mui/material';
 
 const Description = (props) => {
   console.log("propsss:",props);
   return (
   <div>
-    <Grid container  >
-      <Grid container direction={'row'} alignItems="center" justifyContent="center" m={2}>
+    <Grid container >
+      <Box direction={'row'} alignItems="center" justifyContent="center" m={2} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
+      <Box gridColumn="span 10">
         <Paper sx={{
           p: 1,
           m:3,
@@ -40,11 +41,8 @@ const Description = (props) => {
             <Grid item>
             <p>Price Change (24h): {(props.description.priceChange) ? props.description.priceChange : "N/A"}</p> 
             </Grid>
-        </Paper>
-
-      </Grid>
-      
-      <Grid container direction={'row'} alignItems="center" justifyContent="center">
+        </Paper>     
+  
       <Paper sx={{
           p: 1,
           m:3,
@@ -72,7 +70,8 @@ const Description = (props) => {
             <p> Analyst down sentiment: {(props.description.data.sentiment_votes_down_percentage) ? props.description.data.sentiment_votes_down_percentage : "N/A"}%</p>
             </Grid>
         </Paper>
-      </Grid>
+        </Box>
+      </Box>
     </Grid>
   </div>
  
