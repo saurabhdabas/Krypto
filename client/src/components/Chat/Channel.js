@@ -19,12 +19,12 @@ export class Channel extends React.Component {
           <img src={this.props.img} alt={this.props.name} width={300} height={150}/>
           <CardActions align="center">
             <div>
-              <Typography variant="body2" color="text.secondary">
+              <Typography mt={2} mb={0.5} variant="body2" color="text.secondary">
               {this.props.dis}
               </Typography>
               Total Users : {this.props.participants}
               <div>
-                <Button size="medium" variant="contained" onClick={this.click} >Join Room</Button>
+                <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button>
               </div>
              </div>
           </CardActions>
