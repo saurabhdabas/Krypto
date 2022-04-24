@@ -63,6 +63,7 @@ export class Chat extends React.Component {
 
     handleChannelSelect = id => {
         let channel = this.state.channels.find(c => {
+            console.log("c",c);
             return c.id === id;
         });
         this.setState({ channel });
@@ -70,6 +71,21 @@ export class Chat extends React.Component {
         });
     }
 
+    // handleChannelLeave = (id) => {
+        
+    //     let channel = this.state.channels.find(c => {
+    //         console.log("c",c);
+    //         if (c.id === id) {
+    //             return c.participants -= 1;
+    //         }
+    //         console.log("participants:",c.participants);
+    //         // return c.participants !== 0 ? c.participants -= 1 : c.participants;
+    //     });
+    //     this.setState(null);
+    //     this.socket.emit('channel-leave', id, ack => {
+    //     });
+
+    // }
 
     
     handleSendMessage = (channel_id, text) => {
@@ -98,7 +114,7 @@ export class Chat extends React.Component {
             <Navigation mode={this.props.mode} setMode={this.props.setMode}/>
             <Grid  container direction={"row"}  ml={2} spacing={2} columns={12}>
                 <Grid item xs={6} >
-                    <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} />
+                    <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} onLeaveChannel={this.handleChannelLeave}/>
                 </Grid>
                 <Grid item xs={5}>
                     <MessagesPanel onSendMessage={this.handleSendMessage} channel={this.state.channel} />
