@@ -417,7 +417,7 @@ export default function Navigation(props) {
                                   </Link>
                         }
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, mt:0}}>
         <DrawerHeader />
       </Box>
     </Box>
