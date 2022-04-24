@@ -126,6 +126,7 @@ export default function CurrencyConverter(props) {
       <TextField sx={{ m: 1, minWidth: 300 }}
         id="outlined-number"
         value={number}
+        
         label="Enter Amount to Convert"
         type="number"
         InputLabelProps={{
@@ -149,7 +150,7 @@ export default function CurrencyConverter(props) {
               )
             };
           }}
-          label="Primary"
+          label="From"
           onChange={handlePrimary}
         >
           <MenuItem value="">
@@ -165,7 +166,7 @@ export default function CurrencyConverter(props) {
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={secondary}
-          label="Secondary"
+          label="To"
           onChange={handleSecondary}
           renderValue={(crypto)=> {
             if(crypto.image) {
