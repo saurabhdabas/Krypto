@@ -240,14 +240,13 @@ export default function Navigation(props) {
           
             </Box>
             <Box>
-            <FormGroup>
-            <FormControlLabel
-              control={<Switch sx={{ m: 1 }} onChange={handleSwtich}/>}
-              label={(props.mode === 'light') ? <Brightness4Icon/> : <DarkModeIcon/>}
-              
-            />
-            
-          </FormGroup> 
+            <FormGroup >
+            {
+              (props.mode === 'light') ? 
+              <Brightness4Icon onClick={handleSwtich}/> : 
+              <DarkModeIcon onClick={handleSwtich}/>
+            } 
+          </FormGroup>
           
           </Box>
         </Toolbar>
