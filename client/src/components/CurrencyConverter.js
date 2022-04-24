@@ -119,6 +119,7 @@ export default function CurrencyConverter(props) {
         display: 'grid',
         gridTemplateRows: 'repeat(4, 1fr)',
         alignItems:'center',
+        mt:-5,
         // justifyItems:'center'
       }}
     >
