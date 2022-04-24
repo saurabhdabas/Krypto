@@ -7,7 +7,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {Button, Grid} from '@mui/material';
+import {Button, Grid, Stack} from '@mui/material';
 
 
 export class MessagesPanel extends React.Component {
@@ -39,10 +39,12 @@ export class MessagesPanel extends React.Component {
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
-                    <InfoIcon style={{color:'red'}}/>
-                    <Typography component="h1" variant="h6" align='center'>
-                        Chat Room Guidelines
-                    </Typography>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <InfoIcon style={{color:'red'}}/>
+                      <Typography component="h1" variant="h6" align='center'>
+                          Chat Room Guidelines
+                      </Typography>
+                    </Stack>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
