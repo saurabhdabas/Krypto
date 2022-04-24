@@ -13,6 +13,10 @@ export class Channel extends React.Component {
     console.log("props:",this.props);
   }
 
+  leave = () => {
+    this.props.onClick(this.props.participants);
+  }
+
   render() {
     
     return (
@@ -27,7 +31,7 @@ export class Channel extends React.Component {
               </Typography>
               Total Users : {this.props.participants}
               <div>
-                {!this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained" onClick={this.click} >Leave Room</Button>}
+                {!this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained" onClick={this.leave} >Leave Room</Button>}
               </div>
              </div>
           </CardActions>
