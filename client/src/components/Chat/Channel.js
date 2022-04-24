@@ -9,9 +9,12 @@ export class Channel extends React.Component {
 
   click = () => {
     this.props.onClick(this.props.id);
+    
+    console.log("props:",this.props);
   }
 
   render() {
+    
     return (
       <Grid item align="center" xs={6}>
         <Card sx={{ maxWidth: 250 , height: 325, mb: 3 } } align="center">
@@ -24,7 +27,7 @@ export class Channel extends React.Component {
               </Typography>
               Total Users : {this.props.participants}
               <div>
-                <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button>
+                {!this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained" onClick={this.click} >Leave Room</Button>}
               </div>
              </div>
           </CardActions>
