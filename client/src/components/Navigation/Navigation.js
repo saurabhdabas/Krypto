@@ -235,11 +235,11 @@ export default function Navigation(props) {
             </Link>
           
           <Typography variant="h6" noWrap component="div" pl={2} pt={1}>
-             Hello {username.name}   
+             Hi, {username.name}! Welcome to Krypto   
           </Typography>
-              
-              </Box>
-              <Box>
+          
+            </Box>
+            <Box>
             <FormGroup>
             <FormControlLabel
               control={<Switch sx={{ m: 1 }} onChange={handleSwtich}/>}
