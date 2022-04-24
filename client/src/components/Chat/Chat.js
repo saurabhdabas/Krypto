@@ -1,87 +1,111 @@
-import React, { useEffect, useState } from "react";
-import ScrollToBottom from "react-scroll-to-bottom";
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import Avatar from '@mui/material/Avatar';
+import React from 'react';
+import { ChannelList } from './ChannelList';
+import { MessagesPanel } from './MessagesPanel';
+import socketClient from "socket.io-client";
+import Navigation from '../Navigation/Navigation';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Grid } from '@mui/material';
 
-function Chat({ socket, user, room, img }) {
-  const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState([]);
+const SERVER = "http://127.0.0.1:8081";
+export class Chat extends React.Component {
 
-  const sendMessage = async () => {
-    if (currentMessage !== "") {
-      const messageData = {
-        img: img,
-        room: room,
-        author: user,
-        message: currentMessage,
-        time:
-          new Date(Date.now()).getHours() +
-          ":" +
-          new Date(Date.now()).getMinutes(),
-      };
-
-      await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("");
+    state = {
+        channels: null,
+        socket: null,
+        channel: null
     }
-  };
+    socket;
+    componentDidMount() {
+        this.loadChannels();
+        this.configureSocket();
+    }
 
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
+    configureSocket = () => {
+        const socket = socketClient(SERVER);
+        socket.on('connection', () => {
+            if (this.state.channel) {
+                this.handleChannelSelect(this.state.channel.id);
+            }
+        });
+        socket.on('channel', channel => {
+            
+            let channels = this.state.channels;
+            channels.forEach(c => {
+                if (c.id === channel.id) {
+                    c.participants = channel.participants;
+                }
+            });
+            this.setState({ channels });
+        });
+        socket.on('message', message => {
+            
+            let channels = this.state.channels
+            channels.forEach(c => {
+                if (c.id === message.channel_id) {
+                    if (!c.messages) {
+                        c.messages = [message];
+                    } else {
+                        c.messages.push(message);
+                    }
+                }
+            });
+            this.setState({ channels });
+        });
+        this.socket = socket;
+    }
 
-      setMessageList((list) => [...list, data]);
-      
-    });
-  }, [socket]);
+    loadChannels = async () => {
+        fetch('http://localhost:8081/getChannels').then(async response => {
+            let data = await response.json();
+            this.setState({ channels: data.channels });
+        })
+    }
 
-  return (
-<div className="chat-window">
-      <div className="chat-header">
-        <p>Welcome to {room} chat</p>
-      </div>
-      <div className="chat-body">
-        <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
-            return (
-              <div
-                className="message"
-                id={user === messageContent.author ? "you" : "other"}
-              >
-                <div>
-                  <div className="message-content">
-                  <Avatar alt="Remy Sharp"
-                    src={messageContent.img}
-                    sx={{ width: 80, height: 80 }}
-                  />
-                  <p id="time">{messageContent.author} sent at: {messageContent.time}</p>
-                    <p><strong>{messageContent.message}</strong></p>
-                  </div>
-                  <div className="message-meta">
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </ScrollToBottom>
-      </div>
-      <div className="chat-footer">
-        <input
-          type="text"
-          value={currentMessage}
-          placeholder="Hey..."
-          onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-          onKeyPress={(event) => {
-            event.key === "Enter" && sendMessage();
-          }}
-        />
-        <Button onClick={sendMessage} variant="contained" endIcon={<SendIcon />}>
-        Send
-        </Button>
-      </div>
-    </div>
-  );
-}
-export default Chat;
+    handleChannelSelect = id => {
+        let channel = this.state.channels.find(c => {
+            return c.id === id;
+        });
+        this.setState({ channel });
+        this.socket.emit('channel-join', id, ack => {
+        });
+    }
+
+
+    
+    handleSendMessage = (channel_id, text) => {
+        const user=JSON.parse(localStorage.getItem('username'));
+        const date = new Date();
+        const options = {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        };
+        const time = new Intl.DateTimeFormat('en-US', options).format(date)
+        this.socket.emit('send-message', { channel_id, text, senderName: this.socket.id, user: user.name, img: user.img , time: time, id: Date.now() });
+    }
+
+    darkTheme = 
+         createTheme({
+        palette: {
+          mode: this.props.mode,
+        },
+      });
+    render() {
+
+        return (
+
+        <ThemeProvider theme={this.darkTheme}>
+            <Navigation mode={this.props.mode} setMode={this.props.setMode}/>
+            <Grid  container direction={"row"}  ml={3} spacing={2} columns={12}>
+                <Grid item xs={6} >
+                    <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} />
+                </Grid>
+                <Grid item xs={6}>
+                    <MessagesPanel onSendMessage={this.handleSendMessage} channel={this.state.channel} />
+                </Grid>
+            </Grid>
+        </ThemeProvider>
+
+        );
+    }
+};
