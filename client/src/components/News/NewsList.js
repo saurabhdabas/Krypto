@@ -4,7 +4,7 @@ import News from './News'
 import { Grid } from '@mui/material';
 import Box from  '@mui/material/Box';
 import Navigation from '../Navigation/Navigation'
-
+import Typography from '@mui/material/Typography';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -56,11 +56,14 @@ const NewsList = (props) => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Grid container justifyContent={"center"}>
+      
+      <Grid container justifyContent={"center"} display='flex' direction='column' mt={10}>
+      <Typography fontSize={25} textAlign='center'>KRYPTO TIMES : DECRYPT THE CRYPTO</Typography> 
       <Box sx={{mt:10,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
         <Box gridColumn="span 0.5">
           <Navigation mode={props.mode} setMode={props.setMode}/>
         </Box>
+        
         <Box gridColumn="span 10">
 
 
