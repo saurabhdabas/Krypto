@@ -15,6 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Tooltip from '@mui/material/Tooltip';
 
 import { useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
@@ -185,6 +186,7 @@ export default function Navigation(props) {
       <CssBaseline />
       <AppBar position="fixed" open={open} >
         <Toolbar>
+        <Tooltip title="Menu" placement="right-start" arrow>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -197,6 +199,7 @@ export default function Navigation(props) {
           >
             <MenuIcon />
           </IconButton>
+          </Tooltip>
           <Box display={'flex'} flexGrow={1}>
           <Link to="/dashboard" style={{ textDecoration: 'none', color: 'grey'}}>
             <img src={'https://thumbs.gfycat.com/IllSharpCod.webp'} prop={"img"} width='40' alt="bitcoin-gif"/>
@@ -255,9 +258,12 @@ export default function Navigation(props) {
                   justifyContent: 'center',
                 }}
               >
-                <DashboardIcon/>
+                <Tooltip title="Dashboard" placement="right-start" arrow>
+                  <DashboardIcon/>
+                </Tooltip>
               </ListItemIcon>
               <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
+              
             </ListItemButton>
             </Link>
           }
@@ -281,7 +287,9 @@ export default function Navigation(props) {
                     justifyContent: 'center',
                   }}
                 >
-                  <ChatIcon />
+                  <Tooltip title="Chat" placement="right-start" arrow>
+                    <ChatIcon />
+                  </Tooltip>
                 </ListItemIcon>
                 <ListItemText primary="Chatrooms" sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -307,7 +315,9 @@ export default function Navigation(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <NewspaperIcon />
+                    <Tooltip title="News" placement="right-start" arrow>
+                      <NewspaperIcon />
+                    </Tooltip>
                   </ListItemIcon>
                   <ListItemText primary="News" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -333,7 +343,9 @@ export default function Navigation(props) {
                       justifyContent: 'center',
                     }}
                   >
-                    <SwapVerticalCircleIcon />
+                    <Tooltip title="Converter" placement="right-start" arrow>
+                      <SwapVerticalCircleIcon />
+                    </Tooltip>
                   </ListItemIcon>
                   <ListItemText primary="Converter" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
@@ -361,8 +373,9 @@ export default function Navigation(props) {
                               justifyContent: 'center',
                             }}
                             >
-                            <LogoutIcon/>
-                           
+                            <Tooltip title="Logout" placement="right-start" arrow>
+                              <LogoutIcon/>
+                            </Tooltip>
                           </ListItemIcon>
                           <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
