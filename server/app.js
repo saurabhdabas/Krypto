@@ -71,7 +71,6 @@ app.put('/watchlist',(req, res) => {
 });
 
 
-
 // Socket Connection 
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
@@ -80,22 +79,79 @@ const io = require('socket.io')(server, {
     method: ['GET', 'POST']
   }
 });
+const STATIC_CHANNELS = [{
+  name: 'Trending',
+  img:'/trending.jpeg',
+  participants: 0,
+  id: 1,
+  sockets: []
+}, {
+  name: 'Investments',
+  img:'/crypto.jpeg',
+  participants: 0,
+  id: 2,
+  sockets: []
+}, {
+  name: 'General',
+  img:'/bitcoin.jpeg',
+  participants: 0,
+  id: 3,
+  sockets: []
+},
+{
+  name: 'Events',
+  img:'/events.jpeg',
+  participants: 0,
+  id: 4,
+  sockets: []
+}
+];
+io.on('connection', (socket) => { // socket object may be used to send specific messages to the new connected client
+  console.log('new client connected');
+  socket.emit('connection', null);
+  socket.on('channel-join', id => {
+      console.log('channel join', id);
+      STATIC_CHANNELS.forEach(c => {
+          if (c.id === id) {
+              if (c.sockets.indexOf(socket.id) == (-1)) {
+                  c.sockets.push(socket.id);
+                  c.participants++;
+                  io.emit('channel', c);
+              }
+          } else {
+              let index = c.sockets.indexOf(socket.id);
+              if (index != (-1)) {
+                  c.sockets.splice(index, 1);
+                  c.participants--;
+                  io.emit('channel', c);
+              }
+          }
+      });
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+      return id;
+  });
+  socket.on('send-message', message => {
+      io.emit('message', message);
   });
 
-  socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
-  });
+  socket.on('disconnect', () => {
+    STATIC_CHANNELS.forEach(c => {
+        let index = c.sockets.indexOf(socket.id);
+        if (index != (-1)) {
+            c.sockets.splice(index, 1);
+            c.participants--;
+            io.emit('channel', c);
+        }
+    });
+  })
+});
+/**
+ * @description This methos retirves the static channels
+ */
+app.get('/getChannels', (req, res) => {
+  res.json({
+      channels: STATIC_CHANNELS
+  })
 });
 
 module.exports = {app, server};
