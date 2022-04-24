@@ -9,6 +9,7 @@ import Navigation from '../Navigation/Navigation';
 
 import Grid from '@mui/material/Grid';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 const SingleCrypto = (props) => {
   const darkTheme = createTheme({
@@ -49,8 +50,8 @@ const SingleCrypto = (props) => {
          <Navigation mode={props.mode} setMode={props.setMode}/>
       
          <Grid item mb={0} >
-           <img src = {state[0].img} width={100} alt="logo"></img>
-           <div>{state[0].data.name}</div>
+           <img src = {state[0].img} width={80} alt="logo"></img>
+           <Typography mb={3}fontSize={20} textAlign='center'>{state[0].data.name.toUpperCase()}</Typography>
          </Grid>
       
          <Grid item mt={5}  width={800}>
