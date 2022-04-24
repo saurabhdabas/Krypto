@@ -82,18 +82,21 @@ const io = require('socket.io')(server, {
 const STATIC_CHANNELS = [{
   name: 'Trending',
   img:'/trending.jpeg',
+  dis: "Join the room to talk about what's hot in the crypto market.",
   participants: 0,
   id: 1,
   sockets: []
 }, {
   name: 'Investments',
   img:'/crypto.jpeg',
+  dis: "Join the room to discuss crypto investment strategies.",
   participants: 0,
   id: 2,
   sockets: []
 }, {
   name: 'General',
   img:'/bitcoin.jpeg',
+  dis: "Join the room to talk about any events related to any crypto.",
   participants: 0,
   id: 3,
   sockets: []
@@ -101,6 +104,7 @@ const STATIC_CHANNELS = [{
 {
   name: 'Events',
   img:'/events.jpeg',
+  dis: "Join the room to talk about anything related to crypto.",
   participants: 0,
   id: 4,
   sockets: []
