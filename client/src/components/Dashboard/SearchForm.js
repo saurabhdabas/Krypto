@@ -20,8 +20,9 @@ const SearchForm = (props) => {
         value={props.search}
         onChange={props.onChange} 
         name="value" 
-        placeholder="Enter the crypto you want to search for" 
+        placeholder="Enter the crypto you want to search" 
         startAdornment={<InputAdornment position="start"><SearchIcon/></InputAdornment>}
+        inputProps={{ style: {textAlign: 'center'} }}
         // InputProps={{
         //   startAdornment: <InputAdornment position="start"></InputAdornment>,
         // }}
