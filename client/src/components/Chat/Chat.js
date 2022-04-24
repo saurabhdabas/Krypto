@@ -96,11 +96,11 @@ export class Chat extends React.Component {
 
         <ThemeProvider theme={this.darkTheme}>
             <Navigation mode={this.props.mode} setMode={this.props.setMode}/>
-            <Grid  container direction={"row"}  ml={3} spacing={2} columns={12}>
+            <Grid  container direction={"row"}  ml={2} spacing={2} columns={12}>
                 <Grid item xs={6} >
                     <ChannelList channels={this.state.channels} onSelectChannel={this.handleChannelSelect} />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                     <MessagesPanel onSendMessage={this.handleSendMessage} channel={this.state.channel} />
                 </Grid>
             </Grid>
