@@ -4,8 +4,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 
 
 import SingleCrypto from './components/SingleCrypto/SingleCrypto';
+import  {Chat } from './components/chat/Chat';
 
-import ChatRooms from './components/Chat/ChatRooms';
 import Login from './components/Login';
 import NewsList from './components/News/NewsList';
 
@@ -30,7 +30,7 @@ function App(){
             <Route path="/crypto/:id" element={<SingleCrypto mode={mode} setMode={setMode}/>}/>
           
           
-            <Route path="/chatrooms" element={<ChatRooms mode={mode} setMode={setMode}/>}/>
+            <Route path="/chatrooms" element={<Chat mode={mode} setMode={setMode}/>}/>
 
             <Route path="/calculators" element={<CurrencyConverter mode={mode} setMode={setMode}/>}/>
           </Route>
