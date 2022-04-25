@@ -147,7 +147,7 @@ export default function SideBarList(props) {
     setOpen(false);
   };
 
-  const handleSwtich = () => {
+  const handleSwitch = () => {
     (props.mode === 'dark') ? props.setMode('light') : props.setMode('dark')
   }
 
@@ -197,11 +197,11 @@ export default function SideBarList(props) {
               {
                 (props.mode === 'light') ? 
                   <Tooltip title="Switch to Dark mode" placement="left-start" arrow>
-                    <Brightness4Icon onClick={handleSwtich}/>
+                    <Brightness4Icon onClick={handleSwitch}/>
                   </Tooltip>
                   : 
                   <Tooltip title="Switch to Light mode" placement="left-start" arrow>
-                    <DarkModeIcon onClick={handleSwtich}/>
+                    <DarkModeIcon onClick={handleSwitch}/>
                   </Tooltip>
               } 
             </FormGroup>
