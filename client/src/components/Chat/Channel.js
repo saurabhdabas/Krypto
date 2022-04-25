@@ -6,16 +6,14 @@ import { CardActions } from '@mui/material';
 import { Grid } from '@mui/material';
 
 export class Channel extends React.Component {
-
+  
   click = () => {
     this.props.onClick(this.props.id);
-    
-    console.log("props:",this.props);
   }
 
-  leave = () => {
-    this.props.onClick(this.props.participants);
-  }
+  // leave = () => {
+  //   this.props.onLeave(this.props.id);    
+  // }
 
   render() {
     
@@ -31,7 +29,8 @@ export class Channel extends React.Component {
               </Typography>
               Total Users : {this.props.participants}
               <div>
-                {!this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained" onClick={this.leave} >Leave Room</Button>}
+              <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button>
+                {/* {this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained">Leave Room</Button>} */}
               </div>
              </div>
           </CardActions>
