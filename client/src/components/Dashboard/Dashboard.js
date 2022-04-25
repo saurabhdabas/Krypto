@@ -92,10 +92,7 @@ const Dashboard = (props) => {
               <Grid pt={4}  align="center">
               <SearchForm search={search} onChange={inputHandler} mode={props.mode} setMode={props.setMode}/>
               </Grid>
-              {/* <Grid >
-              
-                {(dashboard === "market") ?<Grid container display={'flex'} direction={"row"} justifyContent='space-between' gap={124}> <Typography fontSize={20}>Market</Typography><Button onClick={handlewatchlist}><FavoriteBorderIcon/></Button></Grid> : <Grid container display={'flex'} direction={"row"} justifyContent='space-between' gap={120}> <Typography fontSize={20} >Watch List</Typography><Button onClick={handlewatchlist}><CurrencyBitcoinIcon/></Button></Grid>}
-                </Grid> */}
+
                 <Skeleton variant="rectangular" animation="wave" height={'48vh'} />
             </div>)} 
     
