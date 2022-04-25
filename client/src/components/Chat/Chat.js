@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 
 const SERVER = "http://127.0.0.1:8081";
 export class Chat extends React.Component {
-
+    
     state = {
         channels: null,
         socket: null,
@@ -37,6 +37,7 @@ export class Chat extends React.Component {
             });
             this.setState({ channels });
         });
+
         socket.on('message', message => {
             
             let channels = this.state.channels
@@ -62,6 +63,7 @@ export class Chat extends React.Component {
     }
 
     handleChannelSelect = id => {
+        console.log("thisFromChat.js:",this);
         let channel = this.state.channels.find(c => {
             console.log("c",c);
             return c.id === id;
@@ -70,23 +72,7 @@ export class Chat extends React.Component {
         this.socket.emit('channel-join', id, ack => {
         });
     }
-
-    // handleChannelLeave = (id) => {
-        
-    //     let channel = this.state.channels.find(c => {
-    //         console.log("c",c);
-    //         if (c.id === id) {
-    //             return c.participants -= 1;
-    //         }
-    //         console.log("participants:",c.participants);
-    //         // return c.participants !== 0 ? c.participants -= 1 : c.participants;
-    //     });
-    //     this.setState(null);
-    //     this.socket.emit('channel-leave', id, ack => {
-    //     });
-
-    // }
-
+    
     
     handleSendMessage = (channel_id, text) => {
         const user=JSON.parse(localStorage.getItem('username'));
@@ -100,12 +86,12 @@ export class Chat extends React.Component {
         this.socket.emit('send-message', { channel_id, text, senderName: this.socket.id, user: user.name, img: user.img , time: time, id: Date.now() });
     }
 
-    darkTheme = 
-         createTheme({
-        palette: {
-          mode: this.props.mode,
-        },
-      });
+    // darkTheme = 
+    //     createTheme({
+    //     palette: {
+    //     mode: this.props.mode,
+    //     },
+    //   });
     render() {
 
         return (
