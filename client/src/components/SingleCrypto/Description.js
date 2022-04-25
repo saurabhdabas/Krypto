@@ -52,8 +52,8 @@ console.log(props.description)
                  <ShowChartIcon sx={{fontSize:40}}/>  
                 </div>
             </div>
-              <Grid item> Market Cap</Grid>
-              <Grid item>  ${(props.description.data.market_data.market_cap.cad) ? props.description.data.market_data.market_cap.cad : "N/A"} </Grid>
+              <Grid item>Community Score</Grid>
+              <Grid item>{(props.description.data.community_score) ? props.description.data.community_score: "N/A"} </Grid>
             </Grid>
 
         </Paper>
@@ -86,7 +86,7 @@ console.log(props.description)
                 </div>
               </div>
             <Grid item>Circulating Supply</Grid>
-            <Grid item> {(props.description.circulatingSupply) ? Math.round(props.description.circulatingSupply) : "N/A"}</Grid>
+            <Grid item>$ {(props.description.circulatingSupply) ? Math.round(props.description.circulatingSupply) : "N/A"}</Grid>
           </Grid>
         </Paper>
 
@@ -106,7 +106,7 @@ console.log(props.description)
                   </div>
               </div>
             <Grid item> Current Price </Grid>
-            <Grid item> ${(props.description.price) ? props.description.price : "N/A"}</Grid>
+            <Grid item> $ {(props.description.price) ?props.description.price: "N/A"}</Grid>
           </Grid>
         </Paper>
         <Paper sx={{
