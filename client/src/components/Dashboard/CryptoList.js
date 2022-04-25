@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import MarketCryptoHeader from '../Header/MarketCryptoHeader';
 
 const CryptoList = (props) => {
-  
+  const arr =[];
   const [num, setNum] = useState(0);
 
   const [state, setState] = useState([{
@@ -19,8 +19,8 @@ const CryptoList = (props) => {
   }]);
 
   const [deleted, setDeleted] = useState("");
-  // const [render, setRender] = useState("");
-
+  const [fav, setFav] = useState([]);  
+  
   const handleSubmitWatchlist = () => {
     props.setRender(deleted);
     if (deleted) {
@@ -43,7 +43,7 @@ const CryptoList = (props) => {
 
   },[props.render, props.dashboard]);
   
-  const [fav, setFav] = useState([]);  
+ 
 
   const handleSubmit = () => {
     
@@ -63,7 +63,7 @@ const CryptoList = (props) => {
     handleSubmit();
   }, [fav]);
 
-  const arr =[];
+  
   const filter = state[0].watchlist.map((marketCrypto) => {
     props.data.map((crypto) => {
       if (marketCrypto.crypto_id === crypto.id) {
@@ -115,26 +115,25 @@ const CryptoList = (props) => {
     );
   });
   return (
-<div >
-            <Grid container direction={"column"} style={{maxHeight: '52.5vh', overflow: 'hidden'}} mb={2.8} 
-           >         
-            <TableContainer component={Paper}  sx= {
-              {backgroundColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)', borderTop: "1px solid grey", borderBottom: "1px solid grey",
-              mb: 4
-              }
-            }>
-            <Table stickyHeader aria-label="sticky table" align="left">
-              <MarketCryptoHeader dashboard={props.dashboard}/>
-                    <TableBody>  
-                        {(props.dashboard === "market") ? 
-                        marketCrypto : watchlistCrypto}
-                    </TableBody>
-            </Table>
-          </TableContainer>
-       
-        </Grid>
-      </div>
+
+    <Grid 
+      container direction={"column"} 
+      style={{maxHeight: '52.5vh', overflow: 'hidden'}} 
+      mb={2.8}>         
+      <TableContainer component={Paper}  
+        sx= {
+          {borderTop: "1px solid grey", borderBottom: "1px solid grey",
+          mb: 4
+          }}>
+        <Table stickyHeader aria-label="sticky table" align="left">
+          <MarketCryptoHeader dashboard={props.dashboard} mode = {props.mode}/>
+          <TableBody>  
+              {(props.dashboard === "market") ? marketCrypto : watchlistCrypto}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
+
   )
 };
 
