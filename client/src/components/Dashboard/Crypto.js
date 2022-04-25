@@ -33,23 +33,23 @@ const Crypto = (props) => {
 
     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
     
-      <TableCell component="th" scope="row">
+      <TableCell component="th" scope="row" align='center'>
         <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
           <img src={props.image} alt={props.id} width="50"/>
         </Link>
       </TableCell>
 
-      <TableCell align="left">
+      <TableCell align="center">
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: textColor}}>{props.name}
         </Link>
       </TableCell>
 
-      <TableCell align="left">
+      <TableCell align="center">
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: textColor}}>$ {(props.current_price)}
         </Link>
       </TableCell>
 
-      <TableCell align="left">
+      <TableCell align="center">
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: (Math.round(props.price_change_percentage_24h) > 0) ? "green" : "red"}}>
           <div className='shiftdown'>
             {(Math.round(props.price_change_percentage_24h) > 0) ? 
@@ -64,20 +64,20 @@ const Crypto = (props) => {
         </Link>
       </TableCell>
 
-      <TableCell align="left">
+      <TableCell align="center">
         <Link to={`/crypto/${decodedURL}`} style={{ textDecoration: 'none', color: textColor}}>
           {dateConvert(props.last_updated)}
         </Link>
       </TableCell>
 
       {(props.dashboard === "watchlist") ?
-        <TableCell>
+        <TableCell align='center'>
           <Button aria-label="like"  onClick={() => props.setDeleted(props.id)}>
             <ClearIcon style={{ color: red[500] }}/>
           </Button>
         </TableCell>
       :
-        <TableCell>
+        <TableCell align='center'>
           <Button aria-label="like"  onClick={() => props.setFavorite([props.id, props.image])}>
             <FavoriteIcon style={{ color: red[500] }}/>
           </Button>
