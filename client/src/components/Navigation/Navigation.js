@@ -186,7 +186,7 @@ export default function SideBarList(props) {
           </Tooltip>
           <Box display={'flex'} flexGrow={1}>
             <Link to="/dashboard" style={{ textDecoration: 'none', color: textColor}}>
-              <img src={'https://simplefx.com/assets/images/headers-img/home-animation.gif'} prop={"img"} width='40' alt="bitcoin-gif"/>
+              <img src={'/newlogo.png'} prop={"img"} width='30' alt="bitcoin-gif"/>
             </Link>
             <Typography  variant="h6" noWrap component="div" pl={2} pt={1}>
               Hello, {username.name}! Welcome to Krypto   
