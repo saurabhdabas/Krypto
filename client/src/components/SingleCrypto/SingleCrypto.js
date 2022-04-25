@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Chart from './Chart';
 import Description from './Description';
-
+import { Typography } from '@mui/material';
 import Navigation from '../Navigation/Navigation';
 
 import Grid from '@mui/material/Grid';
@@ -58,7 +58,7 @@ const SingleCrypto = (props) => {
 
       <Grid item  mt={-1} align="center" >
         <img className = 'singleCryptoImg' src = {state[0].img} width={100} alt = "crypto" ></img>
-        <div>{state[0].data.name.toUpperCase()}</div>
+        <Typography>{state[0].data.name}</Typography>
       </Grid>
 
       <Grid item mt={5}  width={850}>
