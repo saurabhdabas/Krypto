@@ -1,17 +1,13 @@
 import React from 'react'
 import { Grid } from "@mui/material";
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 import Input from '@mui/material/Input'; 
 const SearchForm = (props) => {
-  const darkTheme = createTheme({
-    palette: {
-      mode: props.mode,
-    },
-  });
+
   return (
-    <ThemeProvider theme={darkTheme}>
+    
     <Grid container justifyContent="center">
     <form>
 
@@ -21,7 +17,7 @@ const SearchForm = (props) => {
         onChange={props.onChange} 
         name="value" 
         placeholder="Enter the crypto you want to search" 
-        startAdornment={<InputAdornment position="start"><SearchIcon/></InputAdornment>}
+        startAdornment={<InputAdornment position="start"><SearchIcon style={(props.mode === "dark") ? {color: "white"} : {color: "black"}}/></InputAdornment>}
         inputProps={{ style: {textAlign: 'center'} }}
         // InputProps={{
         //   startAdornment: <InputAdornment position="start"></InputAdornment>,
@@ -42,7 +38,6 @@ const SearchForm = (props) => {
     </form>
    
     </Grid>
-    </ThemeProvider>
   )
 }
 
