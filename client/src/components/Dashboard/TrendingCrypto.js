@@ -4,48 +4,64 @@ import url from '../../helpers/urlDecoder';
 import { Grid } from '@mui/material';
 
 import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
+
 import Paper from '@mui/material/Paper';
 
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import {dateConvert} from '../../helpers/dateConvert';
 import '../../index.css'
+import './TrendingCrypto.scss'
 import nameSlice from '../../helpers/nameSlice';
 function TrendingCrypto(props) {
   let decodedURL = url(props.id)
   return (
         
-  <div>
-    <Grid  style={{flexWrap: 'wrap'}} >
-      <Paper
-        sx={{
-          p: 1,
-          margin: 'auto',
-          maxWidth: 500,
-          flexGrow: 1,
-          backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)',
+    <div>
+      <Grid   style={{flex: "wrap"}} p={1}>
+      <Link style = {{textDecoration: 'none'}} to={`/crypto/${decodedURL.toLowerCase()}`}>
+         <Paper
+      sx={(props.mode === 'dark')?{
+        p: 1,
+        margin: 'auto',
+        maxWidth: 500,
+        flexGrow: 1,
+        backgroundColor: "rgb(35, 35, 35)",
+        border: '2px solid rgb(35, 35, 35)'
+      }:
+      {
+        p: 1,
+        margin: 'auto',
+        maxWidth: 500,
+        flexGrow: 1,
+        backgroundColor: "rgb(200, 200, 200)",
+        border: '2px solid #295A24'
       }}>
-        <Grid container spacing={0}>
-          <Grid item>
-            <ButtonBase sx={{ width: 50, height: 100 }}>
-            <Link to={`/crypto/${decodedURL.toLowerCase()}`}><img src={props.image} alt={props.name} width="50"/>  </Link>
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={15} sm container >
+    
+    
+      <Grid container sx={{ width: 250, height: 115}} >
+        {/* <Grid item xs={12} container> */}
+        <div className='imgContainer' >
+          <div className = "cryptoLogo" >
+            <img src={props.image} alt={props.name}  />  
+          </div>
+        </div>
+        {/* </Grid> */}
+        <Grid item xs={15} sm container >
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
                {nameSlice(props.name)}
               </Typography>
               <Typography variant="body2" gutterBottom>
-              ${(props.current_price).toFixed(2)}
+              Price: 
+              ${(props.current_price)}
               </Typography>
             <Typography variant="body2" gutterBottom>
               {dateConvert(props.last_updated)}
               </Typography>
             </Grid>
           </Grid>
+
           <Grid item sx={{direction: "row", justifyContent: "center"}} >
             
             
@@ -56,14 +72,16 @@ function TrendingCrypto(props) {
 
           </Grid>
           <FileUploadIcon style={{color: "green", mt:4}}/>
-          </Grid>
         </Grid>
-      </Paper>
-    </Grid>
-  </div>
-  );
+      </Grid>
+     
+    
+    </Paper>
+    </Link>
+      </Grid>
+    </div>
+  )
 }
-
 export default TrendingCrypto;
 // import React from 'react'
 // import { Link } from 'react-router-dom';
