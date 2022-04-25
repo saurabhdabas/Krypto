@@ -78,7 +78,7 @@ const Charts = () => {
   const [day, setDay] = useState(30);
 
   useEffect(() => {
-    axios.get(`/chart/${id}/${day}`) 
+    axios.get(`/chart/${id}/days/${day}`) 
       .then((res) => { 
         setChartData(res.data.prices)
         }
