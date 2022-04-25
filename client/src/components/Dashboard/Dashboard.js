@@ -76,8 +76,8 @@ const Dashboard = (props) => {
               </Grid>
               <Grid >
               
-                {(dashboard === "market") ?<Grid container display={'flex'} direction={"row"} gap={124}> <Typography fontSize={20} >
-                  Market</Typography><FavoriteBorderIcon onClick={handlewatchlist}/></Grid> : <Grid container display={'flex'} direction={"row"} gap={120}> <Typography fontSize={20} >Watch List</Typography><CurrencyBitcoinIcon onClick={handlewatchlist}/></Grid>}
+                {(dashboard === "market") ?<Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={124}> <Typography fontSize={20} >
+                  Market</Typography><FavoriteBorderIcon onClick={handlewatchlist}/></Grid> : <Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={120}> <Typography fontSize={20} >Watch List</Typography><CurrencyBitcoinIcon onClick={handlewatchlist}/></Grid>}
                 </Grid>
                 <CryptoList loading={loading} render={render} setRender={setRender} dashboard={dashboard} data={filteredRows} mode={props.mode} 
               setMode={props.setMode}/>
@@ -92,13 +92,11 @@ const Dashboard = (props) => {
               <Grid pt={4}  align="center">
               <SearchForm search={search} onChange={inputHandler} mode={props.mode} setMode={props.setMode}/>
               </Grid>
-              <Grid >
+              {/* <Grid >
               
-                {(dashboard === "market") ?<Grid container display={'flex'} direction={"row"} gap={124}> <Typography fontSize={20}>Market</Typography><Button onClick={handlewatchlist}><FavoriteBorderIcon/></Button></Grid> : <Grid container display={'flex'} direction={"row"} gap={120}> <Typography fontSize={20} >Watch List</Typography><Button onClick={handlewatchlist}><CurrencyBitcoinIcon/></Button></Grid>}
-                </Grid>
+                {(dashboard === "market") ?<Grid container display={'flex'} direction={"row"} justifyContent='space-between' gap={124}> <Typography fontSize={20}>Market</Typography><Button onClick={handlewatchlist}><FavoriteBorderIcon/></Button></Grid> : <Grid container display={'flex'} direction={"row"} justifyContent='space-between' gap={120}> <Typography fontSize={20} >Watch List</Typography><Button onClick={handlewatchlist}><CurrencyBitcoinIcon/></Button></Grid>}
+                </Grid> */}
                 <Skeleton variant="rectangular" animation="wave" height={'48vh'} />
-              
-          
             </div>)} 
     
         </Grid>
