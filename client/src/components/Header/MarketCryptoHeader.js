@@ -5,33 +5,28 @@ import TableCell from '@mui/material/TableCell';
 const MarketCryptoHeader = (props) => {
   return (
       <TableHead >
-         <TableCell align="center"  sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+         <TableCell align="center"  sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
       }>Symbol</TableCell>
-          <TableCell align="center" sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+          <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
       }>Currency</TableCell>
-          <TableCell align="center" sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+          <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
       }>Current Price</TableCell>
-          <TableCell align="center" sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+          <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
       }>Change</TableCell>
-          <TableCell align="center" sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
+          <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
       }>Last Updated</TableCell>
-          <TableCell align="center" sx= {
-        {backgroundColor: (theme) =>
-        theme.palette.mode === 'dark' ? 'grey' : 'rgb(238, 238, 238)'}
-      }>{(props.dashboard === 'market')? "Add To Watchlist" : "Remove"}
-        </TableCell>
-      </TableHead>
-  );
+          <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: '#1976d2', color: 'white'}:{fontWeight: "bold", backgroundColor: "#5E5F6E"}
+      }>{(props.dashboard === 'market')? "Add to Watch List" : "Remove"}</TableCell>
+        </TableHead>
+
+ 
+  )
 }
 
 export default MarketCryptoHeader
