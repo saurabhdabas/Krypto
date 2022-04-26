@@ -111,6 +111,7 @@ const CryptoList = (props) => {
       setDeleted={setDeleted}
       setNum={setNum}
       num={num}
+
       />
     );
   });
@@ -122,7 +123,7 @@ const CryptoList = (props) => {
       mb={2.8}>         
       <TableContainer component={Paper}  
         sx= {
-          {borderTop: "1px solid grey", borderBottom: "1px solid grey",
+          {
           mb: 4
           }}>
         <Table stickyHeader aria-label="sticky table" align="left">
