@@ -108,7 +108,7 @@ export default function CurrencyConverter(props) {
   }
   
   return (
-    <Grid container>
+    <Grid >
     <Navigation mode={props.mode} setMode={props.setMode}/>
     
     <Box
