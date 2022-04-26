@@ -15,14 +15,11 @@ import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
 import Navigation from './Navigation/Navigation';
 import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 export default function CurrencyConverter(props) {
-  const darkTheme = createTheme({
-    palette: {
-      mode: props.mode,
-    },
-  });
+
+
   const [ state, setState] = useState([{data:[]}]);
   const [ primary, setPrimary] = useState({
     price:"",
@@ -57,7 +54,8 @@ export default function CurrencyConverter(props) {
   const handleChange = (event) => {
     if(Math.sign(event.target.value)){
 
-      setNumber(event.target.value)
+    setNumber(event.target.value)
+
     }
     setResult('')
   }
@@ -101,14 +99,13 @@ export default function CurrencyConverter(props) {
     setSecondary({
     price:"",
     name:"",
-    image:""});
+    image:""
+  });
     setResult("");
   }
 
   return (
-    <ThemeProvider theme={darkTheme}>
-    <>
-    {/* <Header/> */}
+    <Grid>
     <Navigation mode={props.mode} setMode={props.setMode}/>
     
     <Box
@@ -119,15 +116,13 @@ export default function CurrencyConverter(props) {
         display: 'grid',
         gridTemplateRows: 'repeat(4, 1fr)',
         alignItems:'center',
-        mt:-5,
-        // justifyItems:'center'
+        mt:-5
       }}
     >
-      <Typography variant="h4" textAlign={'center'}>Crypto Currency Converter</Typography> 
+      <Typography variant="h4" textAlign={'center'} fontFamily={'Pacifico'} >Crypto Currency Converter</Typography> 
       <TextField sx={{ m: 1, minWidth: 300 }}
         id="outlined-number"
         value={number}
-        
         label="Enter Amount to Convert"
         type="number"
         InputLabelProps={{
@@ -138,6 +133,7 @@ export default function CurrencyConverter(props) {
       <FormControl sx={{ m: 1, minWidth: 300 }}>
         <InputLabel id="demo-simple-select-helper-label">From</InputLabel>
         <Select
+          
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={primary}
@@ -145,7 +141,8 @@ export default function CurrencyConverter(props) {
             if(crypto.image) {
               return(
               <Grid direction='row' display='flex' justifyContent={'space-between'}>
-                <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}</MenuItem>
+                <MenuItem key ={crypto.name} value={{name:crypto.name, price: crypto.price, image: crypto.image}}>{crypto.name}
+                </MenuItem>
                 <img src={crypto.image} alt = "crypto" width = '30'/>
               </Grid>
               )
@@ -209,8 +206,6 @@ export default function CurrencyConverter(props) {
       </Chip>: null}
       </Box>
     </Box>
-    
-    </>
-    </ThemeProvider>
+    </Grid>
   );
 }
