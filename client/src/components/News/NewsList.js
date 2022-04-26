@@ -47,9 +47,9 @@ const NewsList = (props) => {
 
   return (
   
-  <Grid container justifyContent={"center"} display='flex' direction='column' mt={12}>
-    <Typography fontSize={25} fontFamily={'Pacifico'} textAlign='left' ml={22}>News</Typography> 
-    <Box sx={{mt:10,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
+  <Grid container justifyContent={"center"} display='flex' direction='column' mt={10}>
+    <Typography fontSize={28} fontFamily={'Pacifico'} textAlign='left' mt={5} ml={25}>News</Typography> 
+    <Box sx={{mt:6,mb:5}} display="grid" gridTemplateColumns="repeat(12, 1fr)" columngap="3" rowgap="3">
       <Box gridColumn="span 0.5">
         <Navigation mode={props.mode} setMode={props.setMode}/>
       </Box>
