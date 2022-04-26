@@ -58,7 +58,7 @@ function TrendingCrypto(props) {
               </Typography>
               <Typography variant="body2" gutterBottom color={'#5E5F6E'}>
               Price: 
-              ${(props.current_price)}
+              $ {(props.current_price)}
               </Typography>
             <Typography variant="body2" gutterBottom color={'#5E5F6E'}>
               {dateConvert(props.last_updated)}
