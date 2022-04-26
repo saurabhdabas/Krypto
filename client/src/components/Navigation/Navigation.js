@@ -186,10 +186,10 @@ export default function SideBarList(props) {
           </Tooltip>
           <Box display={'flex'} flexGrow={1}>
             <Link to="/dashboard" style={{ textDecoration: 'none', color: textColor}}>
-              <img src={'/newlogo.png'} prop={"img"} width='30' alt="bitcoin-gif"/>
+              <img src={'https://simplefx.com/assets/images/headers-img/home-animation.gif'} prop={"img"} width='30' alt="bitcoin-gif"/>
             </Link>
-            <Typography  variant="h6" noWrap component="div" pl={2} pt={1}>
-              Hello, {username.name}! Welcome to Krypto   
+            <Typography fontFamily={'Pacifico'}  variant="h5" noWrap component="div" pl={2} pt={1}>
+              Hello, {username.name}!   
             </Typography>
           </Box>
           <Box>
@@ -222,7 +222,7 @@ export default function SideBarList(props) {
               sx={{ width: 50, height: 50, border: 1, borderColor: "black" }}
             />
           </StyledBadge>
-          <Typography variant="h6" noWrap component="div" pl={2} pt={1}>
+          <Typography fontFamily={'Pacifico'}  variant="h6"  noWrap component="div" pl={2} pt={1}>
             {username.name}   
           </Typography>
           <IconButton onClick={handleDrawerClose}>
