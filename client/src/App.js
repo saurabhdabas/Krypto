@@ -13,8 +13,8 @@ import ProtectedRoutes from './components/Hooks/userAuth';
 
 import CurrencyConverter from './components/CurrencyConverter';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { grey,common} from '@mui/material/colors';
-
+import { grey, common } from '@mui/material/colors';
+import DeveloperList from './components/Developer/DeveloperList'
 
 function App() {
   const [mode, setMode] = useState("light")
@@ -26,8 +26,8 @@ function App() {
           // palette values for light mode
           primary: {  main: "#1976d2" },
           background: {
-            default: "#EEECEE",
-            paper: "#FFFFFF",
+            default: "#D6E8FA",
+            paper: "#f8f8ff",
           },
           divider: common.black,
           text: {
@@ -37,7 +37,7 @@ function App() {
         }
       : {
           // palette values for dark mode
-          primary: {main: "#343A40"},//sx={(props.mode ==='light')?{fontSize:40, color:'#295A24'}: {fontSize:40, color:'rgb(1, 19, 11)'}}
+          primary: {main: "#5E5F6E"},
           divider: common.white,
           background: {
             default: "#282928",
@@ -112,6 +112,15 @@ function App() {
           }
         />
         
+        <Route path="/developers" 
+          element={
+            <DeveloperList 
+              mode={mode} 
+              setMode={setMode}
+            />
+          }
+        />
+
         </Route>
 
       </Routes>
@@ -120,5 +129,4 @@ function App() {
 </ThemeProvider>
   );
 }
-
 export default App;
