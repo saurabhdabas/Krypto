@@ -9,7 +9,7 @@ import Navigation from "../Navigation/Navigation";
 import { Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button } from "@mui/material";
+
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -61,14 +61,14 @@ const Dashboard = (props) => {
 
   const containerRef = React.useRef(null);
   return (
-    <Box sx={{ mt: -4 }} ref={containerRef}>
+    <Box sx={{ mt: -1 }} ref={containerRef}>
         <Grid container justifyContent={"center"}>
             {loading ? 
             (<div>        
               <Navigation mode={props.mode} setMode={props.setMode}/>
               {/* <SlideFromContainer/> */}
-              <Typography fontSize={25} >Dashboard</Typography> 
-              <Typography align="center" fontSize={14} >Trending</Typography> 
+              <Typography fontSize={25} fontFamily={'Pacifico'} mb={3}>Dashboard</Typography> 
+              <Typography align="center" fontSize={20} fontFamily={'Pacifico'}>Trending</Typography> 
 
               <TrendingCryptoList mode={props.mode} loading={loading} data={state[0].trending}/> 
               <Grid pt={4} >
@@ -76,8 +76,8 @@ const Dashboard = (props) => {
               </Grid>
               <Grid >
               
-                {(dashboard === "market") ?<Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={124}> <Typography fontSize={20} >
-                  Market</Typography><FavoriteBorderIcon onClick={handlewatchlist}/></Grid> : <Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={120}> <Typography fontSize={20} >Watch List</Typography><CurrencyBitcoinIcon onClick={handlewatchlist}/></Grid>}
+                {(dashboard === "market") ?<Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={124}> <Typography fontFamily={'Pacifico'} fontSize={20} >
+                  Market</Typography><FavoriteBorderIcon onClick={handlewatchlist}/></Grid> : <Grid container display={'flex'} justifyContent='space-between' direction={"row"} gap={120}> <Typography  fontFamily={'Pacifico'} fontSize={20} >Watch List</Typography><CurrencyBitcoinIcon onClick={handlewatchlist}/></Grid>}
                 </Grid>
                 <CryptoList loading={loading} render={render} setRender={setRender} dashboard={dashboard} data={filteredRows} mode={props.mode} 
               setMode={props.setMode}/>
@@ -85,15 +85,15 @@ const Dashboard = (props) => {
             </div>)
             :             (<div>        
               <Navigation mode={props.mode} setMode={props.setMode}/>
-              <Typography fontSize={25} >Dashboard</Typography> 
-              <Typography align="center" fontSize={14} >Trending</Typography> 
+              <Typography fontSize={25} fontFamily={'Pacifico'} >Dashboard</Typography> 
+              <Typography align="center" fontSize={20} fontFamily={'Pacifico'} >Trending</Typography> 
 
               <Skeleton variant="rectangular" animation="wave" width={1100} height={140} />
               <Grid pt={4}  align="center">
               <SearchForm search={search} onChange={inputHandler} mode={props.mode} setMode={props.setMode}/>
               </Grid>
 
-                <Skeleton variant="rectangular" animation="wave" height={'48vh'} />
+              <Skeleton variant="rectangular" animation="wave" height={'48vh'} />
             </div>)} 
     
         </Grid>
