@@ -68,12 +68,10 @@ function TrendingCrypto(props) {
 
           <Grid item sx={{direction: "row", justifyContent: "center"}} >
             
-            
-            <Typography variant="subtitle1" component="div" style={{color: "green"}} >
+          <Typography variant="subtitle1" component="div" style={{color: "green"}} >
             {Math.round(props.price_change_percentage_24h)}%  
-             </Typography>
-
-
+          </Typography>
+          
           </Grid>
           <FileUploadIcon style={{color: "green", mt:4}}/>
         </Grid>
