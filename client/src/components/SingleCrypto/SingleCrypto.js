@@ -12,11 +12,7 @@ import Skeleton from '@mui/material/Skeleton';
 import '../Dashboard/TrendingCrypto.scss'
 
 const SingleCrypto = (props) => {
-  const darkTheme = createTheme({
-    palette: {
-      mode: props.mode,
-    },
-  });
+
   const[loading, setLoading] = useState(false)
   const { id } = useParams();
   const [state, setState] = useState([{
@@ -51,9 +47,8 @@ const SingleCrypto = (props) => {
   return (
 
 <div>
-      {(loading) ? 
-   <Grid container direction={'column'}  alignItems="center" justifyContent="center">
-
+    {(loading) ? 
+   <Grid container direction={'column'}  alignItems="center" justifyContent="center" mb={7}>
       <Navigation mode={props.mode} setMode={props.setMode}/>
 
       <Grid item  mt={-1} align="center" >
@@ -83,7 +78,6 @@ const SingleCrypto = (props) => {
        <Skeleton variant="rectangular" animation="wave" width={750} height={400} />
        </Grid>
  
-
        <Skeleton variant="rectangular" animation="wave" width={700} height={150} />
 
       
