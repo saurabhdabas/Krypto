@@ -81,13 +81,16 @@ export default function CurrencyConverter(props) {
   const amount = number * primary.price;
 
   const handleResult = () => {
+    if(amount && secondary.price) {
+      console.log("amount:",amount);
+      console.log("secondary:",secondary);
     let final = 0;
     
     final = amount/secondary.price;
     
     setResult(final);
   }
-  
+  }
   const handleRefresh = () => {
     setNumber("");
 
@@ -103,9 +106,9 @@ export default function CurrencyConverter(props) {
   });
     setResult("");
   }
-
+  
   return (
-    <Grid>
+    <Grid container>
     <Navigation mode={props.mode} setMode={props.setMode}/>
     
     <Box
