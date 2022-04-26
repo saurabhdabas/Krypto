@@ -6,36 +6,31 @@ import { CardActions } from '@mui/material';
 import { Grid } from '@mui/material';
 
 export class Channel extends React.Component {
-  
+
   click = () => {
     this.props.onClick(this.props.id);
   }
 
-  // leave = () => {
-  //   this.props.onLeave(this.props.id);    
-  // }
-
   render() {
-    
     return (
-      <Grid item align="center" xs={6}>
-        <Card sx={{ maxWidth: 250 , height: 325, mb: 3 } } align="center">
-          <Typography fontSize = {20}>{this.props.name} </Typography>
-          <img src={this.props.img} alt={this.props.name} width={300} height={150}/>
-          <CardActions align="center">
+    <Grid item align="center" xs={6}>
+      <Card sx={{ maxWidth: 250 , height: 300, mb: 3 } } align="center">
+        <Typography fontSize = {20}>{this.props.name} </Typography>
+     
+        <img src={this.props.img} alt={this.props.name} height={150}/>
+        <CardActions align="center">
             <div>
-              <Typography mt={2} mb={0.5} variant="body2" color="text.secondary">
-              {this.props.dis}
-              </Typography>
-              Total Users : {this.props.participants}
-              <div>
-              <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button>
-                {/* {this.props.participants ? <Button  size="medium" variant="contained" onClick={this.click} >Join Room</Button> : <Button color="error" size="medium" variant="contained">Leave Room</Button>} */}
-              </div>
-             </div>
-          </CardActions>
-        </Card>
-      </Grid>    
-    );
+          <Typography variant="body2" color="text.secondary">
+            {this.props.dis}
+          </Typography>
+          Total Users : {this.props.participants}
+            <div>
+              <Button size="medium" variant="contained" onClick={this.click} >Join Room</Button>
+            </div>
+          </div>
+        </CardActions>
+      </Card>
+    </Grid>    
+    )
   }
-};
+}
