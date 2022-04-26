@@ -10,11 +10,18 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import {dateConvert} from '../../helpers/dateConvert';
 import ClearIcon from '@mui/icons-material/Clear';
+import { styled } from '@mui/material/styles';
 
 import '../../index.css'
 
 const Crypto = (props) => {
-  
+  const StyledButton = styled(Button)(() => ({
+    ':hover': {
+      color:'white',
+      transform: 'scale(1.2)',
+      cursor:'pointer'
+    },
+  }));
   const decodedURL = url(props.id);
   const [textColor, setTextColor] = useState('black');
   useEffect(() => {
@@ -81,17 +88,19 @@ const Crypto = (props) => {
         <TableCell align='center' sx= {(props.mode === 'light') ? 
         {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
       }>
-          <Button aria-label="like"  onClick={() => props.setDeleted(props.id)}>
+          <StyledButton aria-label="like"  onClick={() => props.setDeleted(props.id)}>
             <ClearIcon style={{ color: red[500] }}/>
-          </Button>
+          </StyledButton>
         </TableCell>
       :
         <TableCell align='center' sx= {(props.mode === 'light') ? 
         {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
       }>
-          <Button aria-label="like"  onClick={() => props.setFavorite([props.id, props.image])}>
-            <FavoriteIcon style={{ color: red[500] }}/>
-          </Button>
+       
+        <StyledButton aria-label="like" onClick={() => props.setFavorite([props.id, props.image])}>
+          <FavoriteIcon style={{ color: red[500] }}/>
+        </StyledButton>
+       
         </TableCell> 
         }
 
