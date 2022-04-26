@@ -1,8 +1,5 @@
-
 import { Link } from 'react-router-dom';
-
 import url from '../../helpers/urlDecoder';
-
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { red } from '@mui/material/colors';
 import TableCell from '@mui/material/TableCell';
@@ -33,23 +30,31 @@ const Crypto = (props) => {
 
     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 }}}>
     
-      <TableCell component="th" scope="row" align='center'>
+      <TableCell component="th" scope="row" align='center'sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      } >
         <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
           <img src={props.image} alt={props.id} width="50"/>
         </Link>
       </TableCell>
 
-      <TableCell align="center">
+      <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: textColor}}>{props.name}
         </Link>
       </TableCell>
 
-      <TableCell align="center">
+      <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: textColor}}>$ {(props.current_price)}
         </Link>
       </TableCell>
 
-      <TableCell align="center">
+      <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
         <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: (Math.round(props.price_change_percentage_24h) > 0) ? "green" : "red"}}>
           <div className='shiftdown'>
             {(Math.round(props.price_change_percentage_24h) > 0) ? 
@@ -64,20 +69,26 @@ const Crypto = (props) => {
         </Link>
       </TableCell>
 
-      <TableCell align="center">
+      <TableCell align="center" sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
         <Link to={`/crypto/${decodedURL}`} style={{ textDecoration: 'none', color: textColor}}>
           {dateConvert(props.last_updated)}
         </Link>
       </TableCell>
 
       {(props.dashboard === "watchlist") ?
-        <TableCell align='center'>
+        <TableCell align='center' sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
           <Button aria-label="like"  onClick={() => props.setDeleted(props.id)}>
             <ClearIcon style={{ color: red[500] }}/>
           </Button>
         </TableCell>
       :
-        <TableCell align='center'>
+        <TableCell align='center' sx= {(props.mode === 'light') ? 
+        {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
+      }>
           <Button aria-label="like"  onClick={() => props.setFavorite([props.id, props.image])}>
             <FavoriteIcon style={{ color: red[500] }}/>
           </Button>
@@ -89,40 +100,3 @@ const Crypto = (props) => {
   )
 }
 export default Crypto;
-// import {React } from 'react'
-// import { Link } from 'react-router-dom';
-// import url from '../../helpers/urlDecoder';
-// import Fab from '@mui/material/Fab';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-// import { red } from '@mui/material/colors';
-
-
-// const Crypto = (props) =>{
-  
-//   const user = JSON.parse(localStorage.getItem('username'));
-//   const decodedURL = url(props.id);
-//   return (
-//     <li>
-//       <Link to={`/crypto/${decodedURL.toLowerCase()}`}>
-//         <img src={props.image} width= "50" alt={props.name}></img>
-//       </Link>
-//       <div>
-//         <span>{props.name}</span>
-//         <span>{props.price_change_percentage_24h}</span>
-//       </div>
-//       <div>{props.current_price}</div>
-//       <div>{props.last_updated}</div>
-//       <Fab aria-label="like" onClick={(prev)=>props.setFavorite(
-//         ({...prev,
-//         username:user.name,
-//         email:user.email,
-//         fav:props.name,
-//         img:props.image
-//         }))}>
-//           <FavoriteIcon  style={{ color: red[500] }}/>
-//       </Fab>
-//     </li>
-//   )
-// }
-
-// export default Crypto
