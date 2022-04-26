@@ -29,6 +29,7 @@ import { Avatar } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Badge from '@mui/material/Badge';
+import LogoDevIcon from '@mui/icons-material/LogoDev';
 
 const drawerWidth = 195;
 
@@ -184,12 +185,12 @@ export default function SideBarList(props) {
               <MenuIcon />
             </IconButton>
           </Tooltip>
-          <Box display={'flex'} flexGrow={1}>
+          <Box display={'flex'} flexGrow={1} height={50}>
             <Link to="/dashboard" style={{ textDecoration: 'none', color: textColor}}>
               <img src={'https://simplefx.com/assets/images/headers-img/home-animation.gif'} prop={"img"} width='30' alt="bitcoin-gif"/>
             </Link>
-            <Typography fontFamily={'Pacifico'}  variant="h5" noWrap component="div" pl={2} pt={1}>
-              Hello, {username.name}!   
+            <Typography fontFamily={'Pacifico'}  variant="h5" noWrap pl={2} pt={1}>
+            Welcome to Krypto , {username.name}!  
             </Typography>
           </Box>
           <Box>
@@ -226,7 +227,7 @@ export default function SideBarList(props) {
             {username.name}   
           </Typography>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRightIcon style={(props.mode === 'dark') ? {color: 'white' } : {color: "black"}}/> : <ChevronLeftIcon style={(props.mode === 'dark') ? {color: 'white' } : {color: "black"}}/>}
           </IconButton>
         </DrawerHeader>
 
@@ -238,6 +239,7 @@ export default function SideBarList(props) {
             <Link to="/dashboard" style={{ 
               textDecoration: 'none', color: textColor
               }}>
+            
               <ListItemButton
                 key="dashboard"
                 sx={{
@@ -255,8 +257,11 @@ export default function SideBarList(props) {
                     <DashboardIcon style={(props.mode === 'dark') ? { color: 'white' } : {color: "black"}}/>
                   </Tooltip>
                 </ListItemIcon>
+               
                 <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }}/>
+                
               </ListItemButton>
+            
             </Link>
           }
           
@@ -352,6 +357,34 @@ export default function SideBarList(props) {
               </ListItemButton>
             </Link>
           }
+          {
+            <Link to="/developers" style={{ 
+              textDecoration: 'none', 
+              color: textColor
+              }}>    
+              <ListItemButton
+                key="Developers"
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}>
+  
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}>
+                  <Tooltip title="Developers" placement="right-start" arrow>
+                    <LogoDevIcon style={(props.mode === 'dark') ? {color: 'white' } : {color: "black"}}/>
+                  </Tooltip>
+                </ListItemIcon>
+                <ListItemText primary="Developers" 
+                sx={{ opacity: open ? 1 : 0 }}/>
+              </ListItemButton>
+            </Link>
+          }
         </List>
         
         <Divider />
@@ -362,7 +395,7 @@ export default function SideBarList(props) {
               textDecoration: 'none', 
               color: textColor
               }}>
-                        
+
             <ListItemButton
               key="/"
               sx={{
