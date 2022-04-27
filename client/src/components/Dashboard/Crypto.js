@@ -31,7 +31,7 @@ const Crypto = (props) => {
       setTextColor('black');
     }
   }, [props.mode])
-
+  console.log(props.price_change_percentage_24h);
   return (
 
 
@@ -62,8 +62,9 @@ const Crypto = (props) => {
       <TableCell align="center" sx= {(props.mode === 'light') ? 
         {fontWeight: "bold", backgroundColor: "#FFFFFF"}:{fontWeight: "bold", backgroundColor: "rgb(35, 35, 35)"}
       }>
-        <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: (Math.round(props.price_change_percentage_24h) > 0) ? "green" : "red"}}>
+        <Link to={`/crypto/${decodedURL.toLowerCase()}`} style={{ textDecoration: 'none', color: Math.round(props.price_change_percentage_24h > 0) ? "green" : "red"}}>
           <div className='shiftdown'>
+            {Math.round(props.price_change_percentage_24h)}%
             {(Math.round(props.price_change_percentage_24h) > 0) ? 
             <div className='flexdown'>
               <FileUploadIcon/>
