@@ -64,13 +64,13 @@ const developers = admins.map((dev) => {
   );
 })
   return (
-    <div>
+    <Grid mt={5}>
       <Navigation mode={props.mode} setMode={props.setMode}/>
       <Typography align="center" variant="h3" fontFamily={'Pacifico'} mr={3.5}>
         Krypto        Developers
       </Typography>
 
-      <Grid container direction={"row"} justifyContent={"center"} mt={2.5}>
+      <Grid container direction={"row"} justifyContent={"center"} alignItems='center' mt={2.5}>
       {developers}
         </Grid>
           <Typography align="center" variant="h4" fontFamily={'Pacifico'} noWrap component="div" mr={3} mt={1}>Built with</Typography> 
@@ -106,7 +106,7 @@ const developers = admins.map((dev) => {
           <Typography mt={2}><img className='rounded' src={"expressjs.png"} alt={"Express Js"}/></Typography>
           </Tooltip>
         </Grid> 
-    </div>
+    </Grid>
   )
 }
 export default DeveloperList
