@@ -270,7 +270,7 @@ export default function Login() {
             }}
           >
             {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}> */}
-              <img src="/Brand.png" height='70' alt ="logo"></img>
+              <img src="/KRYPTO_free-file.png" height='70' alt ="logo"></img>
             {/* </Avatar> */}
             {/* <Typography component="h1" variant="h5" sx={{  mt: 3 }} >
               Sign in
