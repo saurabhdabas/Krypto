@@ -79,10 +79,7 @@ List of dependencies
 - "debug": "~2.6.9",
 - "dotenv": "^16.0.0",
 - "express": "~4.16.1",
-- "ikea-name-generator": "^1.0.3",
 - "morgan": "~1.9.1",
-- "passport": "^0.5.2",
-- "passport-github2": "^0.1.12",
 - "pg": "^8.7.3",
 - "socket.io": "^4.4.1"
 
